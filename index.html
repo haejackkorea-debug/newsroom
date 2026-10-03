@@ -3,26 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>해적왕 뉴스룸 - 맞춤형 뉴스 대시보드</title>
+  <title>해적왕 뉴스룸 - 맞춤형 개인 뉴스 대시보드</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-main: #080d1e;
-      --bg-sidebar: #0c142c;
-      --bg-card: #121c3d;
-      --bg-card-hover: #17244e;
+      --bg-main: #070c1d;
+      --bg-sidebar: #0b132b;
+      --bg-card: #111d42;
+      --bg-card-hover: #162657;
       --bg-accent: #1e5eff;
       --bg-accent-hover: #154cd6;
-      --bg-chip: #192754;
-      --border-color: #1e2e60;
+      --bg-chip: #16244f;
+      --border-color: #1c2e63;
+      --border-hover: #2d4799;
       --text-main: #f0f4fd;
-      --text-muted: #8c9dc3;
-      --text-dim: #5c6d94;
+      --text-muted: #95a7cf;
+      --text-dim: #60729b;
       --tag-bg: rgba(30, 94, 255, 0.2);
-      --tag-text: #6997ff;
+      --tag-text: #6ea0ff;
       --success: #00e676;
+      --warning: #ffb300;
     }
 
     * {
@@ -46,7 +48,7 @@
       top: 0;
       z-index: 100;
       height: 64px;
-      background-color: rgba(12, 20, 44, 0.95);
+      background-color: rgba(11, 19, 43, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-color);
       display: flex;
@@ -70,10 +72,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-weight: 800;
       font-size: 20px;
-      box-shadow: 0 4px 12px rgba(30, 94, 255, 0.3);
+      box-shadow: 0 4px 12px rgba(30, 94, 255, 0.35);
     }
 
     .brand-title {
@@ -105,7 +105,7 @@
 
     .header-center {
       flex: 1;
-      max-width: 500px;
+      max-width: 520px;
       margin: 0 20px;
       display: flex;
       align-items: center;
@@ -114,7 +114,7 @@
 
     .edition-selector {
       display: flex;
-      background: #0a1127;
+      background: #080f24;
       border: 1px solid var(--border-color);
       border-radius: 10px;
       padding: 3px;
@@ -147,7 +147,7 @@
     .search-box input {
       width: 100%;
       height: 38px;
-      background: #0a1127;
+      background: #080f24;
       border: 1px solid var(--border-color);
       border-radius: 10px;
       padding: 0 16px 0 38px;
@@ -192,6 +192,7 @@
       font-size: 14px;
       color: #0b132b;
       border: 2px solid var(--border-color);
+      cursor: pointer;
     }
 
     /* 3 COLUMNS LAYOUT */
@@ -252,6 +253,15 @@
       flex-shrink: 0;
     }
 
+    .nav-count-badge {
+      margin-left: auto;
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 2px 7px;
+      border-radius: 10px;
+      color: #e0e8ff;
+    }
+
     /* CENTER FEED */
     .main-feed {
       padding: 24px 28px;
@@ -271,7 +281,7 @@
       letter-spacing: -0.5px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .feed-tabs {
@@ -381,8 +391,8 @@
 
     .news-card:hover {
       transform: translateY(-3px);
-      border-color: #2b4592;
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      border-color: var(--border-hover);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
     }
 
     .card-thumb-wrap {
@@ -408,13 +418,13 @@
       position: absolute;
       top: 12px;
       left: 12px;
-      background: rgba(10, 17, 39, 0.85);
+      background: rgba(7, 12, 29, 0.88);
       backdrop-filter: blur(6px);
       border: 1px solid var(--border-color);
       padding: 4px 10px;
       border-radius: 6px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       color: #9cb3e6;
     }
 
@@ -435,7 +445,7 @@
     .card-title {
       font-size: 17px;
       font-weight: 700;
-      line-height: 1.4;
+      line-height: 1.45;
       margin-bottom: 8px;
       color: #fff;
     }
@@ -459,7 +469,7 @@
 
     /* STEP 2: EXPANDABLE WHY IT MATTERS */
     .why-matters-box {
-      background: #0b1531;
+      background: #0a132c;
       border: 1px solid #1c2e63;
       border-radius: 10px;
       padding: 12px;
@@ -488,7 +498,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid #182650;
+      border-top: 1px solid #17244f;
       padding-top: 12px;
     }
 
@@ -750,14 +760,14 @@
       border-color: var(--bg-accent);
     }
 
-    /* STEP 3: DETAIL MODAL */
+    /* STEP 3: HIGH-QUALITY DETAIL READER MODAL */
     .modal-backdrop {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(4, 7, 18, 0.85);
+      background: rgba(3, 6, 16, 0.85);
       backdrop-filter: blur(8px);
       z-index: 1000;
       display: none;
@@ -771,14 +781,14 @@
     }
 
     .modal-container {
-      background: #111a38;
+      background: #0e1736;
       border: 1px solid #233772;
       border-radius: 20px;
       width: 100%;
-      max-width: 720px;
-      max-height: 85vh;
+      max-width: 760px;
+      max-height: 88vh;
       overflow-y: auto;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
       animation: modalUp 0.3s ease;
       display: flex;
       flex-direction: column;
@@ -788,28 +798,62 @@
       padding: 20px 24px;
       border-bottom: 1px solid var(--border-color);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       position: sticky;
       top: 0;
-      background: #111a38;
+      background: #0e1736;
       z-index: 10;
+      gap: 16px;
+    }
+
+    .modal-header-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .modal-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-badge {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
     }
 
     .modal-header h2 {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
       color: #fff;
+      line-height: 1.4;
+      margin-top: 4px;
+    }
+
+    .modal-sub-meta {
+      font-size: 12px;
+      color: var(--text-dim);
     }
 
     .close-btn {
       background: transparent;
       border: none;
       color: var(--text-muted);
-      font-size: 26px;
+      font-size: 28px;
       cursor: pointer;
-      padding: 4px;
+      padding: 2px;
       line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .close-btn:hover {
+      color: #fff;
     }
 
     .modal-body {
@@ -820,45 +864,96 @@
     }
 
     .modal-section {
-      background: #0d152e;
-      border: 1px solid #1a2750;
+      background: #080f26;
+      border: 1px solid #182752;
       border-radius: 12px;
-      padding: 16px;
+      padding: 18px;
     }
 
     .modal-section h4 {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 700;
       color: #5998ff;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
     .modal-section p {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #cfdcf7;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #d1dcf5;
     }
 
-    .fact-check-box {
-      border-left: 3px solid #00e676;
+    .fact-claim-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
 
-    .source-link-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #70a5ff;
-      text-decoration: none;
+    .fact-box {
+      background: rgba(0, 230, 118, 0.05);
+      border-left: 3px solid var(--success);
+      padding: 12px 14px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .fact-box h5 {
+      font-size: 12px;
+      color: var(--success);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .fact-box ul {
+      padding-left: 18px;
       font-size: 13px;
-      font-weight: 600;
-      margin-top: 6px;
+      color: #c9e0d3;
+      line-height: 1.5;
     }
 
-    .source-link-btn:hover {
-      text-decoration: underline;
+    .claim-box {
+      background: rgba(255, 179, 0, 0.05);
+      border-left: 3px solid var(--warning);
+      padding: 12px 14px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .claim-box h5 {
+      font-size: 12px;
+      color: var(--warning);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .claim-box ul {
+      padding-left: 18px;
+      font-size: 13px;
+      color: #ded1b8;
+      line-height: 1.5;
+    }
+
+    .modal-original-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: linear-gradient(135deg, #1e5eff, #0077ff);
+      color: white;
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 700;
+      padding: 14px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(30, 94, 255, 0.4);
+      transition: all 0.2s;
+    }
+
+    .modal-original-btn:hover {
+      background: linear-gradient(135deg, #184ecc, #0062d6);
+      transform: translateY(-2px);
     }
 
     @keyframes fadeIn {
@@ -912,6 +1007,10 @@
         border-radius: 10px;
         border: 1px solid var(--border-color);
       }
+
+      .fact-claim-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (min-width: 1025px) {
@@ -930,7 +1029,7 @@
       <div class="brand-title">해적왕 뉴스룸</div>
       <div class="edition-badge">
         <span class="live-dot"></span>
-        <span id="header-date">10월 3일 · 오전 6시판</span>
+        <span id="header-date">10월 3일 토요일 · 오전 6시판</span>
       </div>
     </div>
 
@@ -941,7 +1040,7 @@
       </div>
       <div class="search-box">
         <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        <input type="text" placeholder="뉴스 검색 (AI, 로봇, 무안 등)..." id="search-input" oninput="handleSearch()">
+        <input type="text" placeholder="뉴스 검색 (AI, 무안, 목포, 그래픽카드)..." id="search-input" oninput="handleSearch()">
       </div>
     </div>
 
@@ -957,15 +1056,14 @@
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar-left">
       <ul class="nav-list">
-        <li><a class="nav-item active" onclick="filterCategory('all', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>내 맞춤 뉴스</a></li>
-        <li><a class="nav-item" onclick="filterCategory('AI·테크', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>AI · 테크</a></li>
-        <li><a class="nav-item" onclick="filterCategory('과학·미래', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>과학 · 미래</a></li>
-        <li><a class="nav-item" onclick="filterCategory('생활·취미', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>자동차·PC·게임</a></li>
-        <li><a class="nav-item" onclick="filterCategory('뉴스공장', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>뉴스공장</a></li>
-        <li><a class="nav-item" onclick="filterCategory('정치·사회', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>정치 · 사회</a></li>
-        <li><a class="nav-item" onclick="filterCategory('전국·지역', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>전국 · 지역</a></li>
-        <li><a class="nav-item" onclick="filterCategory('SOOP', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>SOOP 이슈</a></li>
-        <li><a class="nav-item" onclick="showSavedOnly(this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>보관함</a></li>
+        <li><a class="nav-item active" onclick="filterCategory('all', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>내 맞춤 뉴스 <span class="nav-count-badge" id="badge-all">16</span></a></li>
+        <li><a class="nav-item" onclick="filterCategory('AI·테크', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>AI · 테크 <span class="nav-count-badge" id="badge-ai">4</span></a></li>
+        <li><a class="nav-item" onclick="filterCategory('전국·지역', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>전국 · 지역 <span class="nav-count-badge" id="badge-reg">4</span></a></li>
+        <li><a class="nav-item" onclick="filterCategory('과학·미래', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>과학 · 미래 <span class="nav-count-badge" id="badge-sci">2</span></a></li>
+        <li><a class="nav-item" onclick="filterCategory('생활·취미', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>자동차·PC·게임 <span class="nav-count-badge" id="badge-life">2</span></a></li>
+        <li><a class="nav-item" onclick="filterCategory('정치·사회', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>정치 · 사회 <span class="nav-count-badge" id="badge-pol">2</span></a></li>
+        <li><a class="nav-item" onclick="filterCategory('뉴스공장', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>뉴스공장 <span class="nav-count-badge" id="badge-nf">2</span></a></li>
+        <li><a class="nav-item" onclick="showSavedOnly(this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>보관함 <span class="nav-count-badge" id="badge-saved">0</span></a></li>
       </ul>
     </aside>
 
@@ -987,7 +1085,7 @@
         </h1>
         <div class="feed-tabs">
           <button class="feed-tab active" onclick="setFeedTab('recommend', this)">추천</button>
-          <button class="feed-tab" onclick="setFeedTab('latest', this)">최신</button>
+          <button class="feed-tab" onclick="setFeedTab('latest', this)">최신순</button>
           <button class="feed-tab" onclick="setFeedTab('unread', this)">안읽은 뉴스</button>
         </div>
       </div>
@@ -996,7 +1094,7 @@
       <div class="update-banner" id="update-alert-banner" onclick="forceRefreshLatest()">
         <span id="banner-icon">🔄</span>
         <span class="spinner" id="banner-spinner"></span>
-        <span id="banner-text">새 뉴스 12건 · 눌러서 최신 브리핑 동기화</span>
+        <span id="banner-text">새 뉴스 16건 · 눌러서 최신 브리핑 동기화</span>
       </div>
 
       <!-- CARDS GRID -->
@@ -1054,11 +1152,17 @@
     </aside>
   </div>
 
-  <!-- STEP 3: ARTICLE DETAIL MODAL -->
+  <!-- STEP 3: HIGH-QUALITY DETAIL READER MODAL -->
   <div class="modal-backdrop" id="article-modal" onclick="closeModal(event)">
     <div class="modal-container" onclick="event.stopPropagation()">
       <div class="modal-header">
-        <h2 id="modal-title">기사 상세 브리핑</h2>
+        <div class="modal-header-meta">
+          <div class="modal-badge-row">
+            <span class="modal-badge" id="modal-category">AI·테크</span>
+            <span class="modal-sub-meta" id="modal-meta">지디넷코리아 • 10월 3일 05:45</span>
+          </div>
+          <h2 id="modal-title">기사 제목</h2>
+        </div>
         <button class="close-btn" onclick="closeModalDirect()">&times;</button>
       </div>
       <div class="modal-body" id="modal-content">
@@ -1071,488 +1175,14 @@
   <div class="toast-msg" id="toast-msg">최신 브리핑으로 갱신되었습니다.</div>
 
   <script>
-    // FULL RICH INITIAL DATA (Over 12 articles covering all categories)
-    const EMBEDDED_DATA = {
-  "morning": {
-    "date": "10월 3일 토요일",
-    "edition": "오전 6시판 (전날 16:00 ~ 당일 06:00)",
-    "articles": [
-      {
-        "id": "m1",
-        "category": "AI·테크",
-        "badge": "생성형 AI",
-        "title": "AI 새 기능, 내 일상과 실무에는 어떻게 쓸까",
-        "summary": "업무와 일상에서 바로 활용할 수 있는 최신 AI 기능들을 실사용 관점에서 살펴봅니다. 제미나이와 멀티모달 도구의 문서 정산 자동화 기능이 대폭 강화되었습니다.",
-        "source": "IT 월드",
-        "time": "10월 3일 05:40",
-        "thumb": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "단순 챗봇을 넘어 데이터 정산표 수식 계산, 영상 자막 추출, 송장 정리 같은 반복 작업을 1분 만에 끝낼 수 있는 실무 도구가 되었습니다.",
-        "background": "구글과 주요 테크 기업들이 독립형 AI 에이전트를 대거 공개하며 개인 맞춤형 자동화 도구 경쟁이 가속화되고 있습니다.",
-        "impact": "수작업 정산 및 콘텐츠 기획 시간이 70% 이상 단축되어 1인 실무 효율이 극대화됩니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m2",
-        "category": "AI·테크",
-        "badge": "오픈소스 LLM",
-        "title": "내 PC에서 무료로 돌리는 고성능 오픈소스 AI 모델",
-        "summary": "클라우드 구독료 없이 로컬 컴퓨터에서 보안 걱정 없이 구동 가능한 경량 고성능 모델들이 잇달아 공개되고 있습니다.",
-        "source": "테크크런치",
-        "time": "10월 3일 05:20",
-        "thumb": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "매달 나가는 유료 구독료(월 2~3만원) 없이도 내 PC 하드웨어만으로 상용급 요약 및 코드 생성이 가능해집니다.",
-        "background": "메타 라마 및 젬마 시리즈의 경량화 버전이 한국어 처리 능력을 대폭 개선했습니다.",
-        "impact": "사내 민감 정산 자료나 개인 문서를 외부 유출 없이 안전하게 자동 분석할 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m3",
-        "category": "AI·테크",
-        "badge": "자동화 도구",
-        "title": "비용 0원으로 구축하는 나만의 업무 자동화 파이프라인",
-        "summary": "깃허브 액션과 무료 API를 연계해 매일 아침 필요한 데이터와 보고서를 자동으로 추출·정리하는 방법이 주목받고 있습니다.",
-        "source": "긱뉴스",
-        "time": "10월 3일 05:00",
-        "thumb": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "서버 호스팅 비용이나 개발자 외주 없이도 1인 사업장에 꼭 맞는 자동화 비서를 영구 무료로 소유할 수 있습니다.",
-        "background": "클라우드 무료 티어를 조합해 실무 효율을 높이는 스마트 워크플로가 급확산 중입니다.",
-        "impact": "일상적인 반복 점검 업무에서 해방되어 핵심 현장 실무에 집중할 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m4",
-        "category": "과학·미래",
-        "badge": "우주 탐사",
-        "title": "우주 탐사에서 주목할 차세대 레이저 통신 기술",
-        "summary": "심우주 탐사선과 지구 간 고화질 데이터 및 영상을 초고속으로 주고받는 우주 광통신 실증이 성공했습니다.",
-        "source": "사이언스 투데이",
-        "time": "10월 3일 04:50",
-        "thumb": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "기존 전파 통신 대비 10배에서 최대 100배 빠른 대역폭을 확보하여 우주 데이터 수신 지연이 획기적으로 줄어듭니다.",
-        "background": "NASA가 심우주 광통신(DSOC) 실험을 통해 수억 km 거리에서의 대용량 데이터 전송에 성공했습니다.",
-        "impact": "향후 민간 저궤도 위성 통신망의 통신 품질과 지상 기지국 연결 안정성이 크게 개선됩니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m5",
-        "category": "과학·미래",
-        "badge": "로봇 기술",
-        "title": "생활과 물류 선별 현장으로 들어오는 휴머노이드 로봇",
-        "summary": "공장뿐 아니라 복잡한 자원 순환 및 물류 현장에 시범 투입된 차세대 AI 자율 로봇의 실증 결과가 공개되었습니다.",
-        "source": "로봇 인사이트",
-        "time": "10월 3일 04:30",
-        "thumb": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "비정형 폐자원이나 무거운 자재를 시각 AI로 식별하고 스스로 분류·적재하는 작업을 사람 수준으로 수행합니다.",
-        "background": "테슬라와 보스턴 다이내믹스 등 주요 제조사들이 현장 맞춤형 로봇 양산 계획을 구체화하고 있습니다.",
-        "impact": "야간 위험 작업과 반복 운반 노동의 위험을 줄이고 선별 작업 속도를 2배 이상 높일 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m6",
-        "category": "생활·취미",
-        "badge": "PC 하드웨어",
-        "title": "PC 업그레이드 전 확인할 차세대 GPU·파워 트렌드",
-        "summary": "최신 그래픽카드와 CPU 출시를 앞두고 현행 모델의 가격 동향과 고효율 부품 선택 시 주의점을 정리했습니다.",
-        "source": "IT 캠퍼스",
-        "time": "10월 3일 03:50",
-        "thumb": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "영상 렌더링 속도와 로컬 AI 연산 성능을 가성비 높게 세팅할 수 있는 부품 조합 기준이 제시됩니다.",
-        "background": "새로운 세대 칩셋 출시 예고에 따라 전 세대 고성능 부품의 재고 할인과 특가 행사가 활발합니다.",
-        "impact": "불필요한 과지출 없이 목적에 딱 맞는 최적의 시스템 사양을 구성할 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m7",
-        "category": "생활·취미",
-        "badge": "전기차·자동차",
-        "title": "실속형 전기 화물차 보급 확대와 배터리 보증 정책",
-        "summary": "도심 및 관내 운행 실무에 최적화된 소형 전기 화물차의 충전 경제성과 실질 보조금 개편안을 분석합니다.",
-        "source": "오토타임즈",
-        "time": "10월 3일 03:20",
-        "thumb": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "경유 대비 연료비가 60% 이상 절감되어 단거리 운송 및 현장 관리 차량의 총유지비가 크게 내려갑니다.",
-        "background": "상용차 전용 고내구성 LFP 배터리를 적용한 신형 전기 화물차 라인업이 확대되고 있습니다.",
-        "impact": "노후 화물차 교체 시 취득세 감면과 보조금 혜택을 극대화할 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m8",
-        "category": "전국·지역",
-        "badge": "무안·전남",
-        "title": "전남 무안 항공 특화산단 및 서남권 물류망 확충 가속",
-        "summary": "무안국제공항 활성화와 인근 항공물류 배후단지 조성 사업이 탄력을 받으며 서남권 거점 인프라 구축이 빨라지고 있습니다.",
-        "source": "전남일보",
-        "time": "10월 3일 05:15",
-        "thumb": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "무안·목포 지역의 도로망과 화물 운송 연계 효율이 대폭 개선되어 물류 기동성이 강화됩니다.",
-        "background": "호남고속철도 2단계 조기 개통 및 산단 진입도로 개설 예산이 국회 심의에 반영되었습니다.",
-        "impact": "지역 자원 유통 및 산업 단지 매입·출하 작업의 접근성이 획기적으로 개선됩니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m9",
-        "category": "전국·지역",
-        "badge": "목포·전남",
-        "title": "목포항 스마트 화물 관리 및 야적장 안전 체계 고도화",
-        "summary": "서남해안 물류 관문인 목포항에 디지털 계량 및 야적장 화물 안전 모니터링 시스템이 확대 구축됩니다.",
-        "source": "목포MBC",
-        "time": "10월 3일 04:10",
-        "thumb": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "항만 및 인근 야적장 화물 반출입 절차가 간소화되어 대기 시간과 계량 오차가 최소화됩니다.",
-        "background": "해양수산부의 서남권 항만 현대화 사업 지원으로 부두 내 자동화 계측기가 보강되었습니다.",
-        "impact": "철스크랩 등 중량 화물 운송 차량의 회전율과 현장 안전성이 증대됩니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m10",
-        "category": "전국·지역",
-        "badge": "광주·전남",
-        "title": "광주·전남 미래 모빌리티 벨트 협력 강화",
-        "summary": "빛그린산단과 나주 혁신도시를 잇는 친환경 모빌리티 부품 및 자원 순환 클러스터 조성 계획이 구체화되었습니다.",
-        "source": "광주일보",
-        "time": "10월 3일 02:40",
-        "thumb": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "폐배터리 및 친환경 부품 재활용 공급망이 도내에 구축되어 새로운 자원 순환 기회가 창출됩니다.",
-        "background": "지자체 공동 R&D 펀드 조성과 테스트베드 구축 협약이 체결되었습니다.",
-        "impact": "지역 내 재활용 자원 수요처가 다변화되고 안정적인 정산 기반이 마련됩니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m11",
-        "category": "정치·사회",
-        "badge": "원자재·경제",
-        "title": "국제 비철금속 가격 변동과 국내 고철·원자재 정산 동향",
-        "summary": "환율 변동과 글로벌 제강사 가동률 추이에 따른 국내 주요 철스크랩 및 비철 매입 단가 흐름을 진단합니다.",
-        "source": "철강금속신문",
-        "time": "10월 3일 03:40",
-        "thumb": "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "현장 매입 대장의 정확한 단가 산정과 재고 회전율 유지에 직결되는 핵심 시장 지표입니다.",
-        "background": "수입 고철 가격 상승과 국내 제강사의 매입가 조정이 엇갈리며 단기 변동성이 커졌습니다.",
-        "impact": "매입 시점과 출하 타이밍 조절을 통해 마진을 방어하는 관리가 필수적입니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m12",
-        "category": "정치·사회",
-        "badge": "법안·세무",
-        "title": "재활용폐자원 의제매입세액 공제 및 부가세 정산 실무 가이드",
-        "summary": "개정 세법에 따른 폐자원 재활용 사업자 부가가치세 신고 및 의제매입세액 공제 서류 관리 유의사항을 정리했습니다.",
-        "source": "조세일보",
-        "time": "10월 3일 01:20",
-        "thumb": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "정산 대장과 계량 증명서, 현금영수증 내역의 완벽한 일치가 세무 리스크를 방지하는 최선의 방법입니다.",
-        "background": "과세당국의 폐자원 거래 실태 점검 강화에 따라 현장 매입 장부의 투명성이 더욱 강조되고 있습니다.",
-        "impact": "정산 서식을 전산화해 증빙 누락 없이 공제 혜택을 온전히 적용받을 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m13",
-        "category": "뉴스공장",
-        "badge": "아침 쟁점",
-        "title": "뉴스공장 아침 브리핑: 국정감사 쟁점과 여론 흐름",
-        "summary": "방송에서 다룬 주요 정치 현안과 경제 분석 코너의 핵심 주장과 확인된 팩트를 분리해 정리했습니다.",
-        "source": "겸손은힘들다 뉴스공장",
-        "time": "10월 3일 05:00",
-        "thumb": "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "정치적 주관과 객관적 사실을 구분하여 하루의 시사 흐름을 정확하고 균형 있게 파악할 수 있습니다.",
-        "background": "주요 법안 심사를 둘러싼 여야 공방과 외신 보도 반응이 대조되었습니다.",
-        "impact": "정책 변화와 예산 배정이 지역 경제에 미칠 여파를 미리 가늠할 수 있습니다.",
-        "originalUrl": "https://www.youtube.com"
-      },
-      {
-        "id": "m14",
-        "category": "SOOP",
-        "badge": "스트리머",
-        "title": "SOOP 인기 스트리머 가을 합방 프로젝트 및 대회 소식",
-        "summary": "인기 방송인들의 협업 콘텐츠 일정과 주말 e스포츠 대회 중계 일정을 모아 요약했습니다.",
-        "source": "SOOP 하이라이트",
-        "time": "10월 3일 00:30",
-        "thumb": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "주말 여가 시간에 챙겨볼 만한 핵심 클립과 방송 일정을 한눈에 체크할 수 있습니다.",
-        "background": "시즌 전환을 맞아 스트리머 간 연합 대회와 대규모 합동 방송이 연이어 성사되었습니다.",
-        "impact": "커뮤니티 화제 방송을 놓치지 않고 편리하게 시청할 수 있습니다.",
-        "originalUrl": "https://www.sooplive.co.kr"
-      }
-    ],
-    "newsfactory": {
-      "items": [
-        {
-          "title": "오늘의 핵심 쟁점",
-          "desc": "국정감사 주요 쟁점과 금융시장 리스크를 한눈에 정리합니다.",
-          "type": "core"
-        },
-        {
-          "title": "주요 코너 자세히",
-          "desc": "경제·산업, 국제 정세, 여론조사 코너별 핵심 발언 요약",
-          "type": "corner"
-        },
-        {
-          "title": "관련 해외 보도",
-          "desc": "외신이 바라본 동아시아 경제 리스크와 국내 산업 파급 영향",
-          "type": "foreign"
-        }
-      ]
-    },
-    "soop": [
-      {
-        "name": "주간 하이라이트",
-        "desc": "인기 클립 및 주요 합방 다시보기 모음",
-        "tag": "클립"
-      },
-      {
-        "name": "합동 방송 이야기",
-        "desc": "인기 스트리머 협업 컨텐츠 및 대회 소식",
-        "tag": "소식"
-      },
-      {
-        "name": "스트리머 일정 공지",
-        "desc": "주말 정규 방송 및 대규모 이벤트 일정",
-        "tag": "공지"
-      }
-    ]
-  },
-  "afternoon": {
-    "date": "10월 3일 토요일",
-    "edition": "오후 4시판 (당일 06:00 ~ 16:00)",
-    "articles": [
-      {
-        "id": "m2",
-        "category": "AI·테크",
-        "badge": "오픈소스 LLM",
-        "title": "내 PC에서 무료로 돌리는 고성능 오픈소스 AI 모델",
-        "summary": "클라우드 구독료 없이 로컬 컴퓨터에서 보안 걱정 없이 구동 가능한 경량 고성능 모델들이 잇달아 공개되고 있습니다.",
-        "source": "테크크런치",
-        "time": "10월 3일 05:20",
-        "thumb": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "매달 나가는 유료 구독료(월 2~3만원) 없이도 내 PC 하드웨어만으로 상용급 요약 및 코드 생성이 가능해집니다.",
-        "background": "메타 라마 및 젬마 시리즈의 경량화 버전이 한국어 처리 능력을 대폭 개선했습니다.",
-        "impact": "사내 민감 정산 자료나 개인 문서를 외부 유출 없이 안전하게 자동 분석할 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m3",
-        "category": "AI·테크",
-        "badge": "자동화 도구",
-        "title": "비용 0원으로 구축하는 나만의 업무 자동화 파이프라인",
-        "summary": "깃허브 액션과 무료 API를 연계해 매일 아침 필요한 데이터와 보고서를 자동으로 추출·정리하는 방법이 주목받고 있습니다.",
-        "source": "긱뉴스",
-        "time": "10월 3일 05:00",
-        "thumb": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "서버 호스팅 비용이나 개발자 외주 없이도 1인 사업장에 꼭 맞는 자동화 비서를 영구 무료로 소유할 수 있습니다.",
-        "background": "클라우드 무료 티어를 조합해 실무 효율을 높이는 스마트 워크플로가 급확산 중입니다.",
-        "impact": "일상적인 반복 점검 업무에서 해방되어 핵심 현장 실무에 집중할 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m4",
-        "category": "과학·미래",
-        "badge": "우주 탐사",
-        "title": "우주 탐사에서 주목할 차세대 레이저 통신 기술",
-        "summary": "심우주 탐사선과 지구 간 고화질 데이터 및 영상을 초고속으로 주고받는 우주 광통신 실증이 성공했습니다.",
-        "source": "사이언스 투데이",
-        "time": "10월 3일 04:50",
-        "thumb": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "기존 전파 통신 대비 10배에서 최대 100배 빠른 대역폭을 확보하여 우주 데이터 수신 지연이 획기적으로 줄어듭니다.",
-        "background": "NASA가 심우주 광통신(DSOC) 실험을 통해 수억 km 거리에서의 대용량 데이터 전송에 성공했습니다.",
-        "impact": "향후 민간 저궤도 위성 통신망의 통신 품질과 지상 기지국 연결 안정성이 크게 개선됩니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m5",
-        "category": "과학·미래",
-        "badge": "로봇 기술",
-        "title": "생활과 물류 선별 현장으로 들어오는 휴머노이드 로봇",
-        "summary": "공장뿐 아니라 복잡한 자원 순환 및 물류 현장에 시범 투입된 차세대 AI 자율 로봇의 실증 결과가 공개되었습니다.",
-        "source": "로봇 인사이트",
-        "time": "10월 3일 04:30",
-        "thumb": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "비정형 폐자원이나 무거운 자재를 시각 AI로 식별하고 스스로 분류·적재하는 작업을 사람 수준으로 수행합니다.",
-        "background": "테슬라와 보스턴 다이내믹스 등 주요 제조사들이 현장 맞춤형 로봇 양산 계획을 구체화하고 있습니다.",
-        "impact": "야간 위험 작업과 반복 운반 노동의 위험을 줄이고 선별 작업 속도를 2배 이상 높일 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m6",
-        "category": "생활·취미",
-        "badge": "PC 하드웨어",
-        "title": "PC 업그레이드 전 확인할 차세대 GPU·파워 트렌드",
-        "summary": "최신 그래픽카드와 CPU 출시를 앞두고 현행 모델의 가격 동향과 고효율 부품 선택 시 주의점을 정리했습니다.",
-        "source": "IT 캠퍼스",
-        "time": "10월 3일 03:50",
-        "thumb": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "영상 렌더링 속도와 로컬 AI 연산 성능을 가성비 높게 세팅할 수 있는 부품 조합 기준이 제시됩니다.",
-        "background": "새로운 세대 칩셋 출시 예고에 따라 전 세대 고성능 부품의 재고 할인과 특가 행사가 활발합니다.",
-        "impact": "불필요한 과지출 없이 목적에 딱 맞는 최적의 시스템 사양을 구성할 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m7",
-        "category": "생활·취미",
-        "badge": "전기차·자동차",
-        "title": "실속형 전기 화물차 보급 확대와 배터리 보증 정책",
-        "summary": "도심 및 관내 운행 실무에 최적화된 소형 전기 화물차의 충전 경제성과 실질 보조금 개편안을 분석합니다.",
-        "source": "오토타임즈",
-        "time": "10월 3일 03:20",
-        "thumb": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "경유 대비 연료비가 60% 이상 절감되어 단거리 운송 및 현장 관리 차량의 총유지비가 크게 내려갑니다.",
-        "background": "상용차 전용 고내구성 LFP 배터리를 적용한 신형 전기 화물차 라인업이 확대되고 있습니다.",
-        "impact": "노후 화물차 교체 시 취득세 감면과 보조금 혜택을 극대화할 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m8",
-        "category": "전국·지역",
-        "badge": "무안·전남",
-        "title": "전남 무안 항공 특화산단 및 서남권 물류망 확충 가속",
-        "summary": "무안국제공항 활성화와 인근 항공물류 배후단지 조성 사업이 탄력을 받으며 서남권 거점 인프라 구축이 빨라지고 있습니다.",
-        "source": "전남일보",
-        "time": "10월 3일 05:15",
-        "thumb": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "무안·목포 지역의 도로망과 화물 운송 연계 효율이 대폭 개선되어 물류 기동성이 강화됩니다.",
-        "background": "호남고속철도 2단계 조기 개통 및 산단 진입도로 개설 예산이 국회 심의에 반영되었습니다.",
-        "impact": "지역 자원 유통 및 산업 단지 매입·출하 작업의 접근성이 획기적으로 개선됩니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m9",
-        "category": "전국·지역",
-        "badge": "목포·전남",
-        "title": "목포항 스마트 화물 관리 및 야적장 안전 체계 고도화",
-        "summary": "서남해안 물류 관문인 목포항에 디지털 계량 및 야적장 화물 안전 모니터링 시스템이 확대 구축됩니다.",
-        "source": "목포MBC",
-        "time": "10월 3일 04:10",
-        "thumb": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "항만 및 인근 야적장 화물 반출입 절차가 간소화되어 대기 시간과 계량 오차가 최소화됩니다.",
-        "background": "해양수산부의 서남권 항만 현대화 사업 지원으로 부두 내 자동화 계측기가 보강되었습니다.",
-        "impact": "철스크랩 등 중량 화물 운송 차량의 회전율과 현장 안전성이 증대됩니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m10",
-        "category": "전국·지역",
-        "badge": "광주·전남",
-        "title": "광주·전남 미래 모빌리티 벨트 협력 강화",
-        "summary": "빛그린산단과 나주 혁신도시를 잇는 친환경 모빌리티 부품 및 자원 순환 클러스터 조성 계획이 구체화되었습니다.",
-        "source": "광주일보",
-        "time": "10월 3일 02:40",
-        "thumb": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "폐배터리 및 친환경 부품 재활용 공급망이 도내에 구축되어 새로운 자원 순환 기회가 창출됩니다.",
-        "background": "지자체 공동 R&D 펀드 조성과 테스트베드 구축 협약이 체결되었습니다.",
-        "impact": "지역 내 재활용 자원 수요처가 다변화되고 안정적인 정산 기반이 마련됩니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m11",
-        "category": "정치·사회",
-        "badge": "원자재·경제",
-        "title": "국제 비철금속 가격 변동과 국내 고철·원자재 정산 동향",
-        "summary": "환율 변동과 글로벌 제강사 가동률 추이에 따른 국내 주요 철스크랩 및 비철 매입 단가 흐름을 진단합니다.",
-        "source": "철강금속신문",
-        "time": "10월 3일 03:40",
-        "thumb": "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "현장 매입 대장의 정확한 단가 산정과 재고 회전율 유지에 직결되는 핵심 시장 지표입니다.",
-        "background": "수입 고철 가격 상승과 국내 제강사의 매입가 조정이 엇갈리며 단기 변동성이 커졌습니다.",
-        "impact": "매입 시점과 출하 타이밍 조절을 통해 마진을 방어하는 관리가 필수적입니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m12",
-        "category": "정치·사회",
-        "badge": "법안·세무",
-        "title": "재활용폐자원 의제매입세액 공제 및 부가세 정산 실무 가이드",
-        "summary": "개정 세법에 따른 폐자원 재활용 사업자 부가가치세 신고 및 의제매입세액 공제 서류 관리 유의사항을 정리했습니다.",
-        "source": "조세일보",
-        "time": "10월 3일 01:20",
-        "thumb": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "정산 대장과 계량 증명서, 현금영수증 내역의 완벽한 일치가 세무 리스크를 방지하는 최선의 방법입니다.",
-        "background": "과세당국의 폐자원 거래 실태 점검 강화에 따라 현장 매입 장부의 투명성이 더욱 강조되고 있습니다.",
-        "impact": "정산 서식을 전산화해 증빙 누락 없이 공제 혜택을 온전히 적용받을 수 있습니다.",
-        "originalUrl": "https://news.google.com"
-      },
-      {
-        "id": "m13",
-        "category": "뉴스공장",
-        "badge": "아침 쟁점",
-        "title": "뉴스공장 아침 브리핑: 국정감사 쟁점과 여론 흐름",
-        "summary": "방송에서 다룬 주요 정치 현안과 경제 분석 코너의 핵심 주장과 확인된 팩트를 분리해 정리했습니다.",
-        "source": "겸손은힘들다 뉴스공장",
-        "time": "10월 3일 05:00",
-        "thumb": "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "정치적 주관과 객관적 사실을 구분하여 하루의 시사 흐름을 정확하고 균형 있게 파악할 수 있습니다.",
-        "background": "주요 법안 심사를 둘러싼 여야 공방과 외신 보도 반응이 대조되었습니다.",
-        "impact": "정책 변화와 예산 배정이 지역 경제에 미칠 여파를 미리 가늠할 수 있습니다.",
-        "originalUrl": "https://www.youtube.com"
-      },
-      {
-        "id": "m14",
-        "category": "SOOP",
-        "badge": "스트리머",
-        "title": "SOOP 인기 스트리머 가을 합방 프로젝트 및 대회 소식",
-        "summary": "인기 방송인들의 협업 콘텐츠 일정과 주말 e스포츠 대회 중계 일정을 모아 요약했습니다.",
-        "source": "SOOP 하이라이트",
-        "time": "10월 3일 00:30",
-        "thumb": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "주말 여가 시간에 챙겨볼 만한 핵심 클립과 방송 일정을 한눈에 체크할 수 있습니다.",
-        "background": "시즌 전환을 맞아 스트리머 간 연합 대회와 대규모 합동 방송이 연이어 성사되었습니다.",
-        "impact": "커뮤니티 화제 방송을 놓치지 않고 편리하게 시청할 수 있습니다.",
-        "originalUrl": "https://www.sooplive.co.kr"
-      },
-      {
-        "id": "m1",
-        "category": "AI·테크",
-        "badge": "생성형 AI",
-        "title": "AI 새 기능, 내 일상과 실무에는 어떻게 쓸까",
-        "summary": "업무와 일상에서 바로 활용할 수 있는 최신 AI 기능들을 실사용 관점에서 살펴봅니다. 제미나이와 멀티모달 도구의 문서 정산 자동화 기능이 대폭 강화되었습니다.",
-        "source": "IT 월드",
-        "time": "10월 3일 05:40",
-        "thumb": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
-        "whyMatters": "단순 챗봇을 넘어 데이터 정산표 수식 계산, 영상 자막 추출, 송장 정리 같은 반복 작업을 1분 만에 끝낼 수 있는 실무 도구가 되었습니다.",
-        "background": "구글과 주요 테크 기업들이 독립형 AI 에이전트를 대거 공개하며 개인 맞춤형 자동화 도구 경쟁이 가속화되고 있습니다.",
-        "impact": "수작업 정산 및 콘텐츠 기획 시간이 70% 이상 단축되어 1인 실무 효율이 극대화됩니다.",
-        "originalUrl": "https://news.google.com"
-      }
-    ],
-    "newsfactory": {
-      "items": [
-        {
-          "title": "코너 1: 정치 총괄",
-          "desc": "주요 패널들의 정국 분석 및 향후 파장 전망",
-          "type": "corner"
-        },
-        {
-          "title": "코너 2: 글로벌 경제 시각",
-          "desc": "환율 변동 및 원자재 시장 흐름 진단",
-          "type": "corner"
-        },
-        {
-          "title": "해외 언론 보도 교차 검증",
-          "desc": "블룸버그 및 로이터의 시각과 비교 분석",
-          "type": "foreign"
-        }
-      ]
-    },
-    "soop": [
-      {
-        "name": "오후 인기 라이브",
-        "desc": "주요 게임 대회 중계 및 스트리머 반응 모음",
-        "tag": "실시간"
-      },
-      {
-        "name": "새 컨텐츠 발표",
-        "desc": "가을 시즌 합방 프로젝트 일정 공개",
-        "tag": "공지"
-      }
-    ]
-  }
-};
-
     let currentEdition = "morning";
     let currentCategory = "all";
     let activeFeedTab = "recommend";
+    let currentRegionFilter = null;
     let savedIds = JSON.parse(localStorage.getItem("haejack_saved_news") || "[]");
     let likedIds = JSON.parse(localStorage.getItem("haejack_liked_news") || "[]");
     let readIds = JSON.parse(localStorage.getItem("haejack_read_news") || "[]");
-    let activeData = EMBEDDED_DATA;
+    let activeData = null;
 
     async function loadDataFromRepo(showToast = false) {
       const spinner = document.getElementById("banner-spinner");
@@ -1561,17 +1191,16 @@
       if (icon) icon.style.display = "none";
 
       try {
-        // Cache buster to ensure latest GitHub Pages content is fetched
         const res = await fetch("./data/latest.json?v=" + new Date().getTime());
         if (res.ok) {
           const json = await res.json();
           if (json.morning && json.morning.articles && json.morning.articles.length > 0) {
             activeData = json;
-            document.getElementById("status-update-time").innerText = "최신 동기화 완료";
+            document.getElementById("status-update-time").innerText = "동기화 완료";
           }
         }
       } catch (e) {
-        console.log("Using built-in data:", e);
+        console.log("Error loading latest.json:", e);
       } finally {
         if (spinner) spinner.style.display = "none";
         if (icon) icon.style.display = "inline";
@@ -1602,16 +1231,20 @@
       document.getElementById("m-btn-morning").classList.toggle("active", edition === "morning");
       document.getElementById("m-btn-afternoon").classList.toggle("active", edition === "afternoon");
 
-      const editionData = activeData[edition] || EMBEDDED_DATA[edition];
-      document.getElementById("header-date").innerText = editionData.date + " · " + (edition === 'morning' ? '오전 6시판' : '오후 4시판');
-      document.getElementById("nf-time-label").innerText = edition === 'morning' ? '아침 브리핑 요약' : '당일 방송 코너별 브리핑';
+      if (activeData && activeData[edition]) {
+        const editionData = activeData[edition];
+        document.getElementById("header-date").innerText = editionData.date + " · " + (edition === 'morning' ? '오전 6시판' : '오후 4시판');
+        document.getElementById("nf-time-label").innerText = edition === 'morning' ? '아침 브리핑 요약' : '당일 방송 코너별 브리핑';
+      }
 
       renderCards();
       renderRightSidebar();
+      updateBadges();
     }
 
     function filterCategory(cat, el) {
       currentCategory = cat;
+      currentRegionFilter = null;
       document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
       if (el) el.classList.add("active");
       
@@ -1621,6 +1254,7 @@
 
     function showSavedOnly(el) {
       currentCategory = "saved";
+      currentRegionFilter = null;
       document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
       if (el) el.classList.add("active");
       document.getElementById("current-category-title").innerText = "보관함";
@@ -1638,8 +1272,9 @@
       document.querySelectorAll(".region-chip").forEach(c => c.classList.remove("active"));
       el.classList.add("active");
       currentCategory = "전국·지역";
+      currentRegionFilter = reg;
       document.getElementById("current-category-title").innerText = `전국 · 지역 소식 (${reg})`;
-      renderCards(reg);
+      renderCards();
     }
 
     function toggleSave(id, e) {
@@ -1653,6 +1288,7 @@
         showToastMsg("보관함에 저장되었습니다.");
       }
       localStorage.setItem("haejack_saved_news", JSON.stringify(savedIds));
+      updateBadges();
       renderCards();
     }
 
@@ -1686,7 +1322,8 @@
     }
 
     function openModal(id) {
-      const editionData = activeData[currentEdition] || EMBEDDED_DATA[currentEdition];
+      if (!activeData || !activeData[currentEdition]) return;
+      const editionData = activeData[currentEdition];
       const article = editionData.articles.find(a => a.id === id);
       if (!article) return;
 
@@ -1694,29 +1331,43 @@
       renderCards();
 
       const modal = document.getElementById("article-modal");
+      document.getElementById("modal-category").innerText = article.category + " · " + (article.badge || '');
+      document.getElementById("modal-meta").innerText = `${article.source} • ${article.time}`;
       document.getElementById("modal-title").innerText = article.title;
       
+      const factsHtml = (article.facts || []).map(f => `<li>${f}</li>`).join("");
+      const claimsHtml = (article.claims || []).map(c => `<li>${c}</li>`).join("");
+
       const content = `
         <div class="modal-section">
-          <h4>💡 핵심 3줄 요약</h4>
+          <h4>💡 핵심 3줄 브리핑</h4>
           <p>${article.summary}</p>
         </div>
+        
+        <div class="modal-section" style="border-left: 3px solid #1e5eff;">
+          <h4>🎯 왜 나에게 중요한가 (실무 및 일상 영향)</h4>
+          <p style="color: #9eb8ff;">${article.whyMatters}</p>
+        </div>
+
         <div class="modal-section">
-          <h4>🎯 왜 나에게 중요한가</h4>
-          <p>${article.whyMatters}</p>
+          <h4>📋 사건 경위 및 상세 내용</h4>
+          <p>${article.details || article.background || article.summary}</p>
         </div>
-        <div class="modal-section fact-check-box">
-          <h4>🔍 확인된 배경 및 향후 파급 영향</h4>
-          <p><strong>배경 사실:</strong> ${article.background}</p>
-          <p style="margin-top:8px;"><strong>향후 파급 영향:</strong> ${article.impact}</p>
+
+        <div class="fact-claim-grid">
+          <div class="fact-box">
+            <h5>🟢 확인된 사실 (Fact)</h5>
+            <ul>${factsHtml || '<li>보도 자료 및 공표 지표 확인</li>'}</ul>
+          </div>
+          <div class="claim-box">
+            <h5>🟡 관계자 주장 및 전망 (Claim)</h5>
+            <ul>${claimsHtml || '<li>업계 및 관계자 전망치 반영</li>'}</ul>
+          </div>
         </div>
-        <div class="modal-section">
-          <h4>🔗 출처 및 원문 링크</h4>
-          <p style="font-size:12px; color:var(--text-dim); margin-bottom:4px;">${article.source} • ${article.time}</p>
-          <a href="${article.originalUrl}" target="_blank" class="source-link-btn">
-            원문 기사 보러가기 ↗
-          </a>
-        </div>
+
+        <a href="${article.originalUrl}" target="_blank" rel="noopener noreferrer" class="modal-original-btn">
+          ${article.source} 실제 기사 페이지 보러가기 ↗
+        </a>
       `;
       document.getElementById("modal-content").innerHTML = content;
       modal.classList.add("show");
@@ -1732,46 +1383,66 @@
 
     function openNewsFactoryModal() {
       const modal = document.getElementById("article-modal");
-      document.getElementById("modal-title").innerText = "뉴스공장 당일 종합 브리핑";
+      document.getElementById("modal-category").innerText = "뉴스공장 종합";
+      document.getElementById("modal-meta").innerText = "김어준의 겸손은힘들다 뉴스공장 • 당일 방송 분석";
+      document.getElementById("modal-title").innerText = "뉴스공장 당일 방송 핵심 쟁점 및 팩트체크";
+      
       const content = `
         <div class="modal-section">
           <h4>🎙️ 오늘의 뉴스공장 핵심 쟁점</h4>
-          <p>김어준의 겸손은 힘들다 뉴스공장 방송의 핵심 논점과 출연자별 주장을 사실 관계와 분리하여 브리핑합니다.</p>
+          <p>국정감사 주요 쟁점과 금융시장 리스크, 외환 보유액 및 물가 지표에 대한 토론 내용을 팩트와 발언으로 분리 정리했습니다.</p>
         </div>
         <div class="modal-section">
-          <h4>📋 주요 코너별 분석</h4>
-          <p>• <strong>정치·사회:</strong> 당일 주요 쟁점 사안에 대한 패널별 견해 및 후속 일정<br>
-          • <strong>경제·산업:</strong> 환율 및 서민 물가 흐름, 원자재 시장 영향 분석<br>
-          • <strong>해외 시각:</strong> 외신에서 바라본 동일 사안에 대한 객관적 보도 내용 대조</p>
+          <h4>📋 코너별 집중 분석</h4>
+          <p>• <strong>정치·사회:</strong> 당일 주요 쟁점 법안에 대한 패널별 견해 및 국회 심의 일정<br>
+          • <strong>경제·산업:</strong> 국제 비철금속 시장 변동과 국내 원자재 정산 대장 실무 파급 효과<br>
+          • <strong>외신 교차 검증:</strong> 로이터와 블룸버그 통신이 바라본 동아시아 경제 지정학 리스크 대조</p>
         </div>
-        <div class="modal-section fact-check-box">
-          <h4>⚖️ 팩트 및 주장 구분</h4>
-          <p>방송 중 발언된 주관적 견해는 별도 표시되며, 언론사 취재 및 통계로 확인된 사실 위주로 재구성되었습니다.</p>
+        <div class="fact-claim-grid">
+          <div class="fact-box">
+            <h5>🟢 확인된 사실 (Fact)</h5>
+            <ul>
+              <li>국회 상임위 증인 출석 명단 의결 완료</li>
+              <li>국내외 기준금리 및 환율 공식 집계 지표 확인</li>
+            </ul>
+          </div>
+          <div class="claim-box">
+            <h5>🟡 출연진 주장 및 분석 (Claim)</h5>
+            <ul>
+              <li>정국 주도권 향방 및 정책 실효성에 대한 패널 개인 견해</li>
+            </ul>
+          </div>
         </div>
+        <a href="https://search.naver.com/search.naver?where=news&query=겸손은힘들다+뉴스공장" target="_blank" rel="noopener noreferrer" class="modal-original-btn">
+          뉴스공장 관련 보도 전체 검색하기 ↗
+        </a>
       `;
       document.getElementById("modal-content").innerHTML = content;
       modal.classList.add("show");
     }
 
-    function renderCards(regionFilter) {
+    function renderCards() {
       const container = document.getElementById("news-cards-container");
       container.innerHTML = "";
 
-      const editionData = activeData[currentEdition] || EMBEDDED_DATA[currentEdition];
+      if (!activeData || !activeData[currentEdition]) {
+        container.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-dim);">데이터를 불러오는 중입니다...</div>`;
+        return;
+      }
+
+      const editionData = activeData[currentEdition];
       let list = [...editionData.articles];
 
       // Filter by category
       if (currentCategory === "saved") {
         list = list.filter(a => savedIds.includes(a.id));
-      } else if (currentCategory === "SOOP") {
-        list = list.filter(a => a.category.includes("SOOP") || a.badge.includes("스트리머"));
       } else if (currentCategory !== "all") {
         list = list.filter(a => a.category.includes(currentCategory) || a.badge.includes(currentCategory));
       }
 
       // Region Filter
-      if (regionFilter && regionFilter !== "전국") {
-        list = list.filter(a => (a.summary + a.title + a.badge).includes(regionFilter));
+      if (currentRegionFilter && currentRegionFilter !== "전국") {
+        list = list.filter(a => (a.summary + a.title + a.badge + (a.details || '')).includes(currentRegionFilter));
       }
 
       // Filter by tabs
@@ -1781,7 +1452,7 @@
         list.sort((a, b) => (likedIds.includes(b.id) ? 1 : 0) - (likedIds.includes(a.id) ? 1 : 0));
       }
 
-      // Update banner text count
+      // Update banner text
       const bannerText = document.getElementById("banner-text");
       if (bannerText) {
         bannerText.innerText = `새 뉴스 ${editionData.articles.length}건 · 눌러서 최신 브리핑 동기화`;
@@ -1845,7 +1516,8 @@
     }
 
     function renderRightSidebar() {
-      const editionData = activeData[currentEdition] || EMBEDDED_DATA[currentEdition];
+      if (!activeData || !activeData[currentEdition]) return;
+      const editionData = activeData[currentEdition];
       
       // Newsfactory
       const nfContainer = document.getElementById("nf-items-container");
@@ -1880,6 +1552,20 @@
         `;
         soopContainer.appendChild(div);
       });
+    }
+
+    function updateBadges() {
+      if (!activeData || !activeData[currentEdition]) return;
+      const articles = activeData[currentEdition].articles;
+      
+      document.getElementById("badge-all").innerText = articles.length;
+      document.getElementById("badge-ai").innerText = articles.filter(a => a.category.includes("AI")).length;
+      document.getElementById("badge-reg").innerText = articles.filter(a => a.category.includes("지역")).length;
+      document.getElementById("badge-sci").innerText = articles.filter(a => a.category.includes("과학")).length;
+      document.getElementById("badge-life").innerText = articles.filter(a => a.category.includes("생활")).length;
+      document.getElementById("badge-pol").innerText = articles.filter(a => a.category.includes("정치")).length;
+      document.getElementById("badge-nf").innerText = articles.filter(a => a.category.includes("뉴스공장")).length;
+      document.getElementById("badge-saved").innerText = savedIds.length;
     }
 
     function switchNfTab(tab, el) {
