@@ -1,0 +1,207 @@
+{
+  "morning": {
+    "date": "10월 3일 토요일",
+    "edition": "오전 6시판 (전날 16:00 ~ 당일 06:00)",
+    "articles": [
+      {
+        "id": "m1",
+        "category": "AI·테크",
+        "badge": "테크 라이프",
+        "title": "AI 새 기능, 내 일상에는 어떻게 쓸까",
+        "summary": "업무와 일상에서 바로 활용할 수 있는 최신 AI 기능들을 실사용 관점에서 살펴봅니다. 제미나이 2.5 및 맞춤 자동화 기능이 대폭 강화되었습니다.",
+        "source": "IT 월드",
+        "time": "10월 3일 05:40",
+        "thumb": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
+        "whyMatters": "단순한 챗봇 대화를 넘어 파일 정리, 정산표 수식 계산, 영상 자막 추출 같은 반복 작업을 1분 만에 끝낼 수 있는 실무 도구가 되었습니다.",
+        "background": "구글과 주요 테크 기업들이 독립형 AI 에이전트를 대거 공개하며 개인 생산성 도구 경쟁이 가속화되고 있습니다.",
+        "impact": "수작업 데이터 정산 및 콘텐츠 제작 시간이 70% 이상 단축되는 효과를 기대할 수 있습니다.",
+        "originalUrl": "https://news.google.com"
+      },
+      {
+        "id": "m2",
+        "category": "과학·미래",
+        "badge": "우주 탐사",
+        "title": "우주 탐사에서 주목할 새로운 기술",
+        "summary": "차세대 우주망원경과 심우주 탐사선 추진 기술이 열어갈 가능성을 최신 연구 동향과 함께 정리합니다.",
+        "source": "사이언스 투데이",
+        "time": "10월 3일 04:50",
+        "thumb": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80",
+        "whyMatters": "새로운 심우주 통신 및 고효율 이온 엔진 기술이 실증되며 우주 관측 주기와 데이터 전송량이 10배 이상 향상됩니다.",
+        "background": "NASA와 주요 우주 기관들이 2027년을 목표로 한 달 기지 및 화성 궤도선 발사 준비 일정을 발표했습니다.",
+        "impact": "위성 통신 및 원격 탐사 장비의 소형화·저비용화가 민간 산업으로 확산될 전망입니다.",
+        "originalUrl": "https://news.google.com"
+      },
+      {
+        "id": "m3",
+        "category": "생활·취미",
+        "badge": "하드웨어",
+        "title": "PC 업그레이드 전 확인할 핵심 포인트",
+        "summary": "최신 GPU·CPU 트렌드와 고효율 파워서플라이 선택 시 실무 및 게이밍 환경에서 꼭 챙겨야 할 포인트를 알기 쉽게 정리했습니다.",
+        "source": "IT 캠퍼스",
+        "time": "10월 3일 02:10",
+        "thumb": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80",
+        "whyMatters": "AI 연산 가속(TensorCore) 성능과 전력 효율이 대폭 개선되어 기존 세대 대비 가성비 기준이 크게 바뀌었습니다.",
+        "background": "신규 아키텍처 출시를 앞두고 현행 플래그십 그래픽카드의 가격 안정화가 이어지고 있습니다.",
+        "impact": "영상 렌더링 및 로컬 LLM 구동 환경을 저비용으로 세팅할 수 있는 최적 시기입니다.",
+        "originalUrl": "https://news.google.com"
+      },
+      {
+        "id": "m4",
+        "category": "과학·미래",
+        "badge": "로봇 기술",
+        "title": "생활 속으로 들어오는 휴머노이드 로봇",
+        "summary": "공장뿐 아니라 물류 창고와 가정 현장으로 보급되기 시작한 차세대 인공지능 로봇의 최신 동향을 살펴봅니다.",
+        "source": "로봇 인사이트",
+        "time": "10월 2일 22:30",
+        "thumb": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80",
+        "whyMatters": "시각-언어-행동(VLA) 모델과 결합하여 복잡한 물체 분류와 현장 운반 작업을 자율적으로 수행합니다.",
+        "background": "글로벌 물류 및 재활용 선별 현장에 시범 투입된 휴머노이드 로봇들의 실증 데이터가 공개되었습니다.",
+        "impact": "위험 작업 및 야간 반복 작업의 인력 부담을 줄여주는 핵심 인프라로 자리 잡고 있습니다.",
+        "originalUrl": "https://news.google.com"
+      },
+      {
+        "id": "m5",
+        "category": "전국·지역",
+        "badge": "무안·전남",
+        "title": "전남 무안 항공 특화산단 및 교통망 확충 가속",
+        "summary": "무안국제공항 활성화와 인근 물류 배후단지 조성 사업이 탄력을 받으며 서남권 거점 인프라 구축이 빨라지고 있습니다.",
+        "source": "전남일보",
+        "time": "10월 3일 05:15",
+        "thumb": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&auto=format&fit=crop&q=80",
+        "whyMatters": "무안·목포 지역의 물류 흐름 개선 및 화물 정산·운송 인프라 연계 효율이 크게 높아집니다.",
+        "background": "호남고속철도 2단계 조기 개통 및 배후 도로망 확충 예산이 확정되었습니다.",
+        "impact": "지역 자원 유통 및 산업 단지 매입·출하 작업의 접근성이 획기적으로 개선됩니다.",
+        "originalUrl": "https://news.google.com"
+      },
+      {
+        "id": "m6",
+        "category": "정치·사회",
+        "badge": "국내 시사",
+        "title": "주요 경제 지표 발표와 서민 물가 흐름 점검",
+        "summary": "환율 및 원자재 가격 변동에 따른 국내 주요 물가 추이와 산업계 체감 경기를 종합 점검합니다.",
+        "source": "연합뉴스",
+        "time": "10월 3일 03:40",
+        "thumb": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80",
+        "whyMatters": "고철·폐자원 등 원자재 및 부자재 유통 가격과 현장 매입 단가 결정에 직접적인 영향을 줍니다.",
+        "background": "국제 유가 및 비철금속 시장 변동성이 확대되면서 국내 정산 기준이 재조정되고 있습니다.",
+        "impact": "재고 관리와 적정 마진 확보를 위한 신속한 가격 반영이 필수적입니다.",
+        "originalUrl": "https://news.google.com"
+      }
+    ],
+    "newsfactory": {
+      "items": [
+        {
+          "title": "오늘의 핵심 쟁점",
+          "desc": "추석 이후 정국 변화와 주요 법안 심사 쟁점을 한눈에 정리합니다.",
+          "type": "core"
+        },
+        {
+          "title": "주요 코너 자세히",
+          "desc": "경제·산업, 국제 정세, 여론조사 코너별 핵심 발언 요약",
+          "type": "corner"
+        },
+        {
+          "title": "관련 해외 보도",
+          "desc": "외신이 바라본 동아시아 지정학 리스크와 국내 산업 파급 영향",
+          "type": "foreign"
+        }
+      ]
+    },
+    "soop": [
+      {
+        "name": "주간 하이라이트",
+        "desc": "인기 클립 및 주요 합방 다시보기 모음",
+        "tag": "클립"
+      },
+      {
+        "name": "합동 방송 이야기",
+        "desc": "인기 스트리머 협업 컨텐츠 및 대회 소식",
+        "tag": "소식"
+      },
+      {
+        "name": "스트리머 일정 공지",
+        "desc": "주말 정규 방송 및 대규모 이벤트 일정",
+        "tag": "공지"
+      }
+    ]
+  },
+  "afternoon": {
+    "date": "10월 3일 토요일",
+    "edition": "오후 4시판 (당일 06:00 ~ 16:00)",
+    "articles": [
+      {
+        "id": "a1",
+        "category": "뉴스공장",
+        "badge": "당일 방송 핵심",
+        "title": "뉴스공장 브리핑: 당일 주요 코너 집중 분석",
+        "summary": "아침 방송에서 다룬 주요 정치·사회 현안과 경제 분석 코너의 핵심 주장과 팩트를 체계적으로 정리했습니다.",
+        "source": "김어준의 겸손은힘들다 뉴스공장",
+        "time": "10월 3일 15:30",
+        "thumb": "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=600&auto=format&fit=crop&q=80",
+        "whyMatters": "방송 출연진의 주요 관점과 함께 확인된 사실 관계, 이에 대한 해외 주요 외신의 객관적 시각을 교차 검증합니다.",
+        "background": "국정감사 주요 쟁점과 금융시장 안정을 둘러싼 여야 공방이 집중적으로 조명되었습니다.",
+        "impact": "향후 정책 추진 방향과 경제 변수에 대한 다각도의 판단 근거를 확보할 수 있습니다.",
+        "originalUrl": "https://www.youtube.com"
+      },
+      {
+        "id": "a2",
+        "category": "AI·테크",
+        "badge": "글로벌 빅테크",
+        "title": "오픈소스 AI 모델들의 대약진과 기업 경쟁 구도",
+        "summary": "독점 모델에 맞서 고성능 오픈소스 모델들이 잇달아 공개되며 자체 서버와 로컬 환경에서의 AI 도입 장벽이 무너지고 있습니다.",
+        "source": "테크크런치",
+        "time": "10월 3일 14:10",
+        "thumb": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80",
+        "whyMatters": "클라우드 구독료 없이 내 컴퓨터에서 보안 걱정 없이 고성능 AI를 무료로 돌릴 수 있는 환경이 완성되었습니다.",
+        "background": "라마(Llama) 및 경량화 모델들의 한국어 추론 능력이 상용 API 수준으로 급성장했습니다.",
+        "impact": "자체 데이터 정산 파이프라인과 프라이빗 문서 요약 시스템 구축이 수월해집니다.",
+        "originalUrl": "https://news.google.com"
+      },
+      {
+        "id": "a3",
+        "category": "전국·지역",
+        "badge": "목포·광주",
+        "title": "호남선 KTX 개량 및 광주·전남 미래 모빌리티 협력",
+        "summary": "광주·전남 공동 혁신도시를 중심으로 한 차세대 운송 네트워크와 광역 교통망 확충 논의가 급물살을 타고 있습니다.",
+        "source": "광주일보",
+        "time": "10월 3일 12:20",
+        "thumb": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&auto=format&fit=crop&q=80",
+        "whyMatters": "목포-무안-나주-광주 간 이동 시간이 단축되어 현장 관리 및 물류 기동성이 강화됩니다.",
+        "background": "지역 상생 교통 협의체가 발족되어 환승 체계와 화물 배송 거점 단지 구축을 심의했습니다.",
+        "impact": "출퇴근 및 관내 이동 편의뿐 아니라 부자재 배송 소요시간이 단축됩니다.",
+        "originalUrl": "https://news.google.com"
+      }
+    ],
+    "newsfactory": {
+      "items": [
+        {
+          "title": "코너 1: 정치 총괄",
+          "desc": "주요 패널들의 정국 분석 및 향후 파장 전망",
+          "type": "corner"
+        },
+        {
+          "title": "코너 2: 글로벌 경제 시각",
+          "desc": "환율 변동 및 원자재 시장 흐름 진단",
+          "type": "corner"
+        },
+        {
+          "title": "해외 언론 보도 교차 검증",
+          "desc": "블룸버그 및 로이터의 시각과 비교 분석",
+          "type": "foreign"
+        }
+      ]
+    },
+    "soop": [
+      {
+        "name": "오후 인기 라이브",
+        "desc": "주요 게임 대회 중계 및 스트리머 반응 모음",
+        "tag": "실시간"
+      },
+      {
+        "name": "새 컨텐츠 발표",
+        "desc": "가을 시즌 합방 프로젝트 일정 공개",
+        "tag": "공지"
+      }
+    ]
+  }
+}

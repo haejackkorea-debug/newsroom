@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>해적왕 뉴스룸 - 맞춤형 뉴스 대시보드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #080d1e;
+      --bg-sidebar: #0c142c;
+      --bg-card: #121c3d;
+      --bg-card-hover: #17244e;
+      --bg-accent: #1e5eff;
+      --bg-accent-hover: #154cd6;
+      --bg-chip: #192754;
+      --border-color: #1e2e60;
+      --text-main: #f0f4fd;
+      --text-muted: #8c9dc3;
+      --text-dim: #5c6d94;
+      --tag-bg: rgba(30, 94, 255, 0.2);
+      --tag-text: #6997ff;
+      --danger-color: #ff5c5c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* TOP HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 64px;
+      background-color: rgba(12, 20, 44, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #1e5eff, #00d2ff);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 20px;
+      box-shadow: 0 4px 12px rgba(30, 94, 255, 0.3);
+    }
+
+    .brand-title {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+
+    .edition-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-chip);
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .edition-badge .live-dot {
+      width: 6px;
+      height: 6px;
+      background: #00e676;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #00e676;
+    }
+
+    .header-center {
+      flex: 1;
+      max-width: 480px;
+      margin: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .edition-selector {
+      display: flex;
+      background: #0a1127;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 3px;
+    }
+
+    .edition-btn {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .edition-btn.active {
+      background: var(--bg-accent);
+      color: white;
+      box-shadow: 0 2px 8px rgba(30, 94, 255, 0.4);
+    }
+
+    .search-box {
+      flex: 1;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      height: 38px;
+      background: #0a1127;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0 16px 0 38px;
+      color: white;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--bg-accent);
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .icon-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+
+    .icon-btn:hover {
+      background: var(--bg-chip);
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f7971e, #ffd200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: #0b132b;
+      cursor: pointer;
+      border: 2px solid var(--border-color);
+    }
+
+    /* MAIN CONTAINER - 3 COLUMNS */
+    .app-container {
+      display: grid;
+      grid-template-columns: 220px 1fr 340px;
+      min-height: calc(100vh - 64px);
+      max-width: 1680px;
+      margin: 0 auto;
+    }
+
+    /* LEFT SIDEBAR */
+    .sidebar-left {
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      padding: 20px 12px;
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-chip);
+      color: var(--text-main);
+    }
+
+    .nav-item.active {
+      background: var(--bg-accent);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(30, 94, 255, 0.3);
+    }
+
+    .nav-item svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* CENTER FEED */
+    .main-feed {
+      padding: 24px 28px;
+      overflow-y: auto;
+    }
+
+    .feed-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .feed-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .feed-tabs {
+      display: flex;
+      gap: 6px;
+    }
+
+    .feed-tab {
+      padding: 6px 14px;
+      background: var(--bg-chip);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .feed-tab.active {
+      background: var(--bg-accent);
+      color: white;
+      border-color: var(--bg-accent);
+    }
+
+    /* UPDATE ALERT BANNER */
+    .update-banner {
+      background: linear-gradient(90deg, #102357, #19388a);
+      border: 1px solid #234ca8;
+      border-radius: 12px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #79a6ff;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .update-banner:hover {
+      transform: translateY(-1px);
+      background: linear-gradient(90deg, #132a69, #1c409e);
+    }
+
+    /* CARDS GRID */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .news-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .news-card:hover {
+      transform: translateY(-3px);
+      border-color: #2b4592;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-thumb-wrap {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      background: #091226;
+    }
+
+    .card-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .news-card:hover .card-thumb-wrap img {
+      transform: scale(1.04);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(10, 17, 39, 0.85);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border-color);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .card-body {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-category {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--tag-text);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .card-summary {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+
+    /* STEP 2: EXPANDABLE WHY IT MATTERS */
+    .why-matters-box {
+      background: #0b1531;
+      border: 1px solid #1c2e63;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #9db2e2;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .why-matters-box.show {
+      display: block;
+    }
+
+    .why-matters-box strong {
+      color: #4da3ff;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #182650;
+      padding-top: 12px;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .action-btn:hover {
+      background: var(--bg-chip);
+      color: #fff;
+    }
+
+    .action-btn.active {
+      color: #ffb703;
+    }
+
+    .action-btn.why-btn {
+      color: #5ea0ff;
+    }
+
+    /* RIGHT SIDEBAR */
+    .sidebar-right {
+      background-color: var(--bg-sidebar);
+      border-left: 1px solid var(--border-color);
+      padding: 20px 16px;
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* NEWS FACTORY BOX */
+    .newsfactory-card {
+      background: #111a38;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .newsfactory-banner {
+      height: 100px;
+      position: relative;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .newsfactory-banner h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .newsfactory-banner p {
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .newsfactory-tabs {
+      display: flex;
+      padding: 10px 12px 0 12px;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nf-tab {
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nf-tab.active {
+      color: #fff;
+      border-bottom-color: var(--bg-accent);
+    }
+
+    .nf-items-list {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nf-item {
+      padding: 10px 12px;
+      background: #0d152e;
+      border-radius: 10px;
+      border: 1px solid #1a2853;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .nf-item:hover {
+      background: #131e42;
+    }
+
+    .nf-item-icon {
+      color: #5998ff;
+      margin-top: 2px;
+    }
+
+    .nf-item-content h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #e5edff;
+      margin-bottom: 2px;
+    }
+
+    .nf-item-content p {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .nf-read-btn {
+      width: calc(100% - 24px);
+      margin: 4px 12px 14px 12px;
+      background: var(--bg-accent);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .nf-read-btn:hover {
+      background: var(--bg-accent-hover);
+    }
+
+    /* SOOP SECTION */
+    .soop-section {
+      background: #111a38;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .section-header h3 {
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-header span {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .streamer-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .streamer-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border-radius: 8px;
+      background: #0d152e;
+    }
+
+    .streamer-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #253b75;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .streamer-info {
+      flex: 1;
+    }
+
+    .streamer-info h5 {
+      font-size: 12px;
+      color: #fff;
+    }
+
+    .streamer-info p {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* REGIONAL SECTION */
+    .regional-section {
+      background: #111a38;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .regional-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .region-chip {
+      background: #0d152e;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .region-chip:hover, .region-chip.active {
+      background: var(--bg-accent);
+      color: white;
+      border-color: var(--bg-accent);
+    }
+
+    /* STEP 3: DETAIL MODAL */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(4, 7, 18, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .modal-container {
+      background: #111a38;
+      border: 1px solid #233772;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 720px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      animation: modalUp 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #111a38;
+      z-index: 10;
+    }
+
+    .modal-header h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
+
+    .modal-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .modal-section {
+      background: #0d152e;
+      border: 1px solid #1a2750;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .modal-section h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #5998ff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-section p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #cfdcf7;
+    }
+
+    .fact-check-box {
+      border-left: 3px solid #00e676;
+    }
+
+    .fact-check-box.claim {
+      border-left-color: #ffd600;
+    }
+
+    .source-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .source-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #70a5ff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .source-link-btn:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes modalUp {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* RESPONSIVE (MOBILE) */
+    @media (max-width: 1024px) {
+      .app-container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar-left, .sidebar-right {
+        display: none;
+      }
+
+      header {
+        padding: 0 16px;
+      }
+
+      .brand-title {
+        font-size: 17px;
+      }
+
+      .header-center {
+        display: none;
+      }
+
+      .main-feed {
+        padding: 16px;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .mobile-edition-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        background: #0f1837;
+        padding: 8px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .mobile-edition-bar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header>
+    <div class="brand-section">
+      <div class="logo-icon">🏴‍☠️</div>
+      <div class="brand-title">해적왕 뉴스룸</div>
+      <div class="edition-badge">
+        <span class="live-dot"></span>
+        <span id="header-date">10월 3일 토요일</span>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="edition-selector">
+        <button class="edition-btn active" id="btn-morning" onclick="switchEdition('morning')">오전 6시판</button>
+        <button class="edition-btn" id="btn-afternoon" onclick="switchEdition('afternoon')">오후 4시판</button>
+      </div>
+      <div class="search-box">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <input type="text" placeholder="뉴스 검색..." id="search-input" oninput="handleSearch()">
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="icon-btn" title="알림">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+      </button>
+      <div class="user-avatar" title="해적왕">👑</div>
+    </div>
+  </header>
+
+  <!-- APP MAIN -->
+  <div class="app-container">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar-left">
+      <ul class="nav-list">
+        <li><a class="nav-item active" onclick="filterCategory('all', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>내 맞춤 뉴스</a></li>
+        <li><a class="nav-item" onclick="filterCategory('AI·테크', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>AI · 테크</a></li>
+        <li><a class="nav-item" onclick="filterCategory('과학·미래', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>과학 · 미래</a></li>
+        <li><a class="nav-item" onclick="filterCategory('생활·취미', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>자동차·PC·게임</a></li>
+        <li><a class="nav-item" onclick="openNewsFactoryModal()"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>뉴스공장</a></li>
+        <li><a class="nav-item" onclick="filterCategory('정치·사회', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>정치 · 사회</a></li>
+        <li><a class="nav-item" onclick="filterCategory('전국·지역', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>전국 · 지역</a></li>
+        <li><a class="nav-item" onclick="filterCategory('SOOP', this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>SOOP 이슈</a></li>
+        <li><a class="nav-item" onclick="showSavedOnly(this)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>보관함</a></li>
+      </ul>
+    </aside>
+
+    <!-- CENTER CONTENT -->
+    <main class="main-feed">
+
+      <!-- MOBILE EDITION BAR -->
+      <div class="mobile-edition-bar">
+        <span style="font-size: 13px; font-weight: 700;">판 선택:</span>
+        <div class="edition-selector">
+          <button class="edition-btn active" id="m-btn-morning" onclick="switchEdition('morning')">오전 6시판</button>
+          <button class="edition-btn" id="m-btn-afternoon" onclick="switchEdition('afternoon')">오후 4시판</button>
+        </div>
+      </div>
+
+      <div class="feed-header">
+        <h1 class="feed-title">
+          <span id="current-category-title">내 맞춤 뉴스</span>
+        </h1>
+        <div class="feed-tabs">
+          <button class="feed-tab active" onclick="setFeedTab('recommend', this)">추천</button>
+          <button class="feed-tab" onclick="setFeedTab('latest', this)">최신</button>
+          <button class="feed-tab" onclick="setFeedTab('unread', this)">안읽은 뉴스</button>
+        </div>
+      </div>
+
+      <!-- UPDATE BANNER -->
+      <div class="update-banner" id="update-alert-banner" onclick="loadLatestArticles()">
+        <span>🔄</span> <span id="banner-text">새 뉴스 8건 · 눌러서 최신판 보기</span>
+      </div>
+
+      <!-- CARDS GRID -->
+      <div class="cards-grid" id="news-cards-container">
+        <!-- Javascript renders cards here -->
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar-right">
+
+      <!-- NEWS FACTORY BOX -->
+      <div class="newsfactory-card">
+        <div class="newsfactory-banner">
+          <p id="nf-time-label">브리핑 구성 예시</p>
+          <h3 id="nf-title">뉴스공장 브리핑</h3>
+        </div>
+        <div class="newsfactory-tabs">
+          <div class="nf-tab active" onclick="switchNfTab('core', this)">전체 핵심</div>
+          <div class="nf-tab" onclick="switchNfTab('corner', this)">코너별</div>
+        </div>
+        <div class="nf-items-list" id="nf-items-container">
+          <!-- Dynamic Newsfactory items -->
+        </div>
+        <button class="nf-read-btn" onclick="openNewsFactoryModal()">
+          브리핑 읽기 <span>→</span>
+        </button>
+      </div>
+
+      <!-- SOOP SECTION -->
+      <div class="soop-section">
+        <div class="section-header">
+          <h3>🎮 SOOP 지금 이슈</h3>
+          <span>FM코리아 연동</span>
+        </div>
+        <div class="streamer-list" id="soop-items-container">
+          <!-- SOOP items -->
+        </div>
+      </div>
+
+      <!-- REGIONAL SECTION -->
+      <div class="regional-section">
+        <div class="section-header">
+          <h3>📍 전국 · 지역 소식</h3>
+        </div>
+        <div class="regional-chips">
+          <button class="region-chip active" onclick="filterRegion('무안', this)">무안</button>
+          <button class="region-chip" onclick="filterRegion('목포', this)">목포</button>
+          <button class="region-chip" onclick="filterRegion('전남', this)">전남</button>
+          <button class="region-chip" onclick="filterRegion('광주', this)">광주</button>
+          <button class="region-chip" onclick="filterRegion('전국', this)">전국</button>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- STEP 3: ARTICLE DETAIL MODAL -->
+  <div class="modal-backdrop" id="article-modal" onclick="closeModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2 id="modal-title">기사 상세 브리핑</h2>
+        <button class="close-btn" onclick="closeModalDirect()">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-content">
+        <!-- Modal content loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // INITIAL EMBEDDED SAMPLE DATA (Fallback if static json is not yet created)
+    const SAMPLE_DATA = {
+      morning: {
+        date: "10월 3일 토요일",
+        edition: "오전 6시판 (전날 16:00 ~ 당일 06:00)",
+        articles: [
+          {
+            id: "m1",
+            category: "AI·테크",
+            badge: "테크 라이프",
+            title: "AI 새 기능, 내 일상에는 어떻게 쓸까",
+            summary: "업무와 일상에서 바로 활용할 수 있는 최신 AI 기능들을 실사용 관점에서 살펴봅니다. 제미나이 2.5 및 맞춤 자동화 기능이 대폭 강화되었습니다.",
+            source: "IT 월드",
+            time: "10월 3일 05:40",
+            thumb: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
+            whyMatters: "단순한 챗봇 대화를 넘어 파일 정리, 정산표 수식 계산, 영상 자막 추출 같은 반복 작업을 1분 만에 끝낼 수 있는 실무 도구가 되었습니다.",
+            background: "구글과 주요 테크 기업들이 독립형 AI 에이전트를 대거 공개하며 개인 생산성 도구 경쟁이 가속화되고 있습니다.",
+            impact: "수작업 데이터 정산 및 콘텐츠 제작 시간이 70% 이상 단축되는 효과를 기대할 수 있습니다.",
+            originalUrl: "https://news.google.com"
+          },
+          {
+            id: "m2",
+            category: "과학·미래",
+            badge: "우주 탐사",
+            title: "우주 탐사에서 주목할 새로운 기술",
+            summary: "차세대 우주망원경과 심우주 탐사선 추진 기술이 열어갈 가능성을 최신 연구 동향과 함께 정리합니다.",
+            source: "사이언스 투데이",
+            time: "10월 3일 04:50",
+            thumb: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80",
+            whyMatters: "새로운 심우주 통신 및 고효율 이온 엔진 기술이 실증되며 우주 관측 주기와 데이터 전송량이 10배 이상 향상됩니다.",
+            background: "NASA와 주요 우주 기관들이 2027년을 목표로 한 달 기지 및 화성 궤도선 발사 준비 일정을 발표했습니다.",
+            impact: "위성 통신 및 원격 탐사 장비의 소형화·저비용화가 민간 산업으로 확산될 전망입니다.",
+            originalUrl: "https://news.google.com"
+          },
+          {
+            id: "m3",
+            category: "생활·취미",
+            badge: "하드웨어",
+            title: "PC 업그레이드 전 확인할 핵심 포인트",
+            summary: "최신 GPU·CPU 트렌드와 고효율 파워서플라이 선택 시 실무 및 게이밍 환경에서 꼭 챙겨야 할 포인트를 알기 쉽게 정리했습니다.",
+            source: "IT 캠퍼스",
+            time: "10월 3일 02:10",
+            thumb: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80",
+            whyMatters: "AI 연산 가속(TensorCore) 성능과 전력 효율이 대폭 개선되어 기존 세대 대비 가성비 기준이 크게 바뀌었습니다.",
+            background: "신규 아키텍처 출시를 앞두고 현행 플래그십 그래픽카드의 가격 안정화가 이어지고 있습니다.",
+            impact: "영상 렌더링 및 로컬 LLM 구동 환경을 저비용으로 세팅할 수 있는 최적 시기입니다.",
+            originalUrl: "https://news.google.com"
+          },
+          {
+            id: "m4",
+            category: "과학·미래",
+            badge: "로봇 기술",
+            title: "생활 속으로 들어오는 휴머노이드 로봇",
+            summary: "공장뿐 아니라 물류 창고와 가정 현장으로 보급되기 시작한 차세대 인공지능 로봇의 최신 동향을 살펴봅니다.",
+            source: "로봇 인사이트",
+            time: "10월 2일 22:30",
+            thumb: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80",
+            whyMatters: "시각-언어-행동(VLA) 모델과 결합하여 복잡한 물체 분류와 현장 운반 작업을 자율적으로 수행합니다.",
+            background: "글로벌 물류 및 재활용 선별 현장에 시범 투입된 휴머노이드 로봇들의 실증 데이터가 공개되었습니다.",
+            impact: "위험 작업 및 야간 반복 작업의 인력 부담을 줄여주는 핵심 인프라로 자리 잡고 있습니다.",
+            originalUrl: "https://news.google.com"
+          },
+          {
+            id: "m5",
+            category: "전국·지역",
+            badge: "무안·전남",
+            title: "전남 무안 항공 특화산단 및 교통망 확충 가속",
+            summary: "무안국제공항 활성화와 인근 물류 배후단지 조성 사업이 탄력을 받으며 서남권 거점 인프라 구축이 빨라지고 있습니다.",
+            source: "전남일보",
+            time: "10월 3일 05:15",
+            thumb: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&auto=format&fit=crop&q=80",
+            whyMatters: "무안·목포 지역의 물류 흐름 개선 및 화물 정산·운송 인프라 연계 효율이 크게 높아집니다.",
+            background: "호남고속철도 2단계 조기 개통 및 배후 도로망 확충 예산이 확정되었습니다.",
+            impact: "지역 자원 유통 및 산업 단지 매입·출하 작업의 접근성이 획기적으로 개선됩니다.",
+            originalUrl: "https://news.google.com"
+          },
+          {
+            id: "m6",
+            category: "정치·사회",
+            badge: "국내 시사",
+            title: "주요 경제 지표 발표와 서민 물가 흐름 점검",
+            summary: "환율 및 원자재 가격 변동에 따른 국내 주요 물가 추이와 산업계 체감 경기를 종합 점검합니다.",
+            source: "연합뉴스",
+            time: "10월 3일 03:40",
+            thumb: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80",
+            whyMatters: "고철·폐자원 등 원자재 및 부자재 유통 가격과 현장 매입 단가 결정에 직접적인 영향을 줍니다.",
+            background: "국제 유가 및 비철금속 시장 변동성이 확대되면서 국내 정산 기준이 재조정되고 있습니다.",
+            impact: "재고 관리와 적정 마진 확보를 위한 신속한 가격 반영이 필수적입니다.",
+            originalUrl: "https://news.google.com"
+          }
+        ],
+        newsfactory: {
+          items: [
+            { title: "오늘의 핵심 쟁점", desc: "추석 이후 정국 변화와 주요 법안 심사 쟁점을 한눈에 정리합니다.", type: "core" },
+            { title: "주요 코너 자세히", desc: "경제·산업, 국제 정세, 여론조사 코너별 핵심 발언 요약", type: "corner" },
+            { title: "관련 해외 보도", desc: "외신이 바라본 동아시아 지정학 리스크와 국내 산업 파급 영향", type: "foreign" }
+          ]
+        },
+        soop: [
+          { name: "주간 하이라이트", desc: "인기 클립 및 주요 합방 다시보기 모음", tag: "클립" },
+          { name: "합동 방송 이야기", desc: "인기 스트리머 협업 컨텐츠 및 대회 소식", tag: "소식" },
+          { name: "스트리머 일정 공지", desc: "주말 정규 방송 및 대규모 이벤트 일정", tag: "공지" }
+        ]
+      },
+      afternoon: {
+        date: "10월 3일 토요일",
+        edition: "오후 4시판 (당일 06:00 ~ 16:00)",
+        articles: [
+          {
+            id: "a1",
+            category: "뉴스공장",
+            badge: "당일 방송 핵심",
+            title: "뉴스공장 브리핑: 당일 주요 코너 집중 분석",
+            summary: "아침 방송에서 다룬 주요 정치·사회 현안과 경제 분석 코너의 핵심 주장과 팩트를 체계적으로 정리했습니다.",
+            source: "김어준의 겸손은힘들다 뉴스공장",
+            time: "10월 3일 15:30",
+            thumb: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=600&auto=format&fit=crop&q=80",
+            whyMatters: "방송 출연진의 주요 관점과 함께 확인된 사실 관계, 이에 대한 해외 주요 외신의 객관적 시각을 교차 검증합니다.",
+            background: "국정감사 주요 쟁점과 금융시장 안정을 둘러싼 여야 공방이 집중적으로 조명되었습니다.",
+            impact: "향후 정책 추진 방향과 경제 변수에 대한 다각도의 판단 근거를 확보할 수 있습니다.",
+            originalUrl: "https://www.youtube.com"
+          },
+          {
+            id: "a2",
+            category: "AI·테크",
+            badge: "글로벌 빅테크",
+            title: "오픈소스 AI 모델들의 대약진과 기업 경쟁 구도",
+            summary: "독점 모델에 맞서 고성능 오픈소스 모델들이 잇달아 공개되며 자체 서버와 로컬 환경에서의 AI 도입 장벽이 무너지고 있습니다.",
+            source: "테크크런치",
+            time: "10월 3일 14:10",
+            thumb: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80",
+            whyMatters: "클라우드 구독료 없이 내 컴퓨터에서 보안 걱정 없이 고성능 AI를 무료로 돌릴 수 있는 환경이 완성되었습니다.",
+            background: "라마(Llama) 및 경량화 모델들의 한국어 추론 능력이 상용 API 수준으로 급성장했습니다.",
+            impact: "자체 데이터 정산 파이프라인과 프라이빗 문서 요약 시스템 구축이 수월해집니다.",
+            originalUrl: "https://news.google.com"
+          },
+          {
+            id: "a3",
+            category: "전국·지역",
+            badge: "목포·광주",
+            title: "호남선 KTX 개량 및 광주·전남 미래 모빌리티 협력",
+            summary: "광주·전남 공동 혁신도시를 중심으로 한 차세대 운송 네트워크와 광역 교통망 확충 논의가 급물살을 타고 있습니다.",
+            source: "광주일보",
+            time: "10월 3일 12:20",
+            thumb: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&auto=format&fit=crop&q=80",
+            whyMatters: "목포-무안-나주-광주 간 이동 시간이 단축되어 현장 관리 및 물류 기동성이 강화됩니다.",
+            background: "지역 상생 교통 협의체가 발족되어 환승 체계와 화물 배송 거점 단지 구축을 심의했습니다.",
+            impact: "출퇴근 및 관내 이동 편의뿐 아니라 부자재 배송 소요시간이 단축됩니다.",
+            originalUrl: "https://news.google.com"
+          }
+        ],
+        newsfactory: {
+          items: [
+            { title: "코너 1: 정치 총괄", desc: "주요 패널들의 정국 분석 및 향후 파장 전망", type: "corner" },
+            { title: "코너 2: 글로벌 경제 시각", desc: "환율 변동 및 원자재 시장 흐름 진단", type: "corner" },
+            { title: "해외 언론 보도 교차 검증", desc: "블룸버그 및 로이터의 시각과 비교 분석", type: "foreign" }
+          ]
+        },
+        soop: [
+          { name: "오후 인기 라이브", desc: "주요 게임 대회 중계 및 스트리머 반응 모음", tag: "실시간" },
+          { name: "새 컨텐츠 발표", desc: "가을 시즌 합방 프로젝트 일정 공개", tag: "공지" }
+        ]
+      }
+    };
+
+    let currentEdition = "morning";
+    let currentCategory = "all";
+    let activeFeedTab = "recommend";
+    let savedIds = JSON.parse(localStorage.getItem("haejack_saved_news") || "[]");
+    let likedIds = JSON.parse(localStorage.getItem("haejack_liked_news") || "[]");
+    let readIds = JSON.parse(localStorage.getItem("haejack_read_news") || "[]");
+    let activeData = SAMPLE_DATA;
+
+    // TRY FETCHING STATIC JSON IF AVAILABLE
+    async function loadDataFromRepo() {
+      try {
+        const res = await fetch("data/latest.json");
+        if (res.ok) {
+          const json = await res.json();
+          if (json.morning && json.afternoon) {
+            activeData = json;
+          }
+        }
+      } catch (e) {
+        console.log("Using embedded sample data");
+      }
+      renderAll();
+    }
+
+    function switchEdition(edition) {
+      currentEdition = edition;
+      document.getElementById("btn-morning").classList.toggle("active", edition === "morning");
+      document.getElementById("btn-afternoon").classList.toggle("active", edition === "afternoon");
+      document.getElementById("m-btn-morning").classList.toggle("active", edition === "morning");
+      document.getElementById("m-btn-afternoon").classList.toggle("active", edition === "afternoon");
+
+      const editionData = activeData[edition];
+      document.getElementById("header-date").innerText = editionData.date + " · " + (edition === 'morning' ? '오전 6시판' : '오후 4시판');
+      document.getElementById("nf-time-label").innerText = edition === 'morning' ? '아침 브리핑 요약' : '당일 방송 코너별 브리핑';
+
+      renderCards();
+      renderRightSidebar();
+    }
+
+    function filterCategory(cat, el) {
+      currentCategory = cat;
+      document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
+      if (el) el.classList.add("active");
+      
+      document.getElementById("current-category-title").innerText = cat === 'all' ? '내 맞춤 뉴스' : cat;
+      renderCards();
+    }
+
+    function showSavedOnly(el) {
+      currentCategory = "saved";
+      document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
+      if (el) el.classList.add("active");
+      document.getElementById("current-category-title").innerText = "보관함";
+      renderCards();
+    }
+
+    function setFeedTab(tab, el) {
+      activeFeedTab = tab;
+      document.querySelectorAll(".feed-tab").forEach(t => t.classList.remove("active"));
+      el.classList.add("active");
+      renderCards();
+    }
+
+    function filterRegion(reg, el) {
+      document.querySelectorAll(".region-chip").forEach(c => c.classList.remove("active"));
+      el.classList.add("active");
+      currentCategory = "전국·지역";
+      document.getElementById("current-category-title").innerText = `전국 · 지역 소식 (${reg})`;
+      renderCards(reg);
+    }
+
+    function toggleSave(id, e) {
+      e.stopPropagation();
+      const idx = savedIds.indexOf(id);
+      if (idx > -1) {
+        savedIds.splice(idx, 1);
+      } else {
+        savedIds.push(id);
+      }
+      localStorage.setItem("haejack_saved_news", JSON.stringify(savedIds));
+      renderCards();
+    }
+
+    function toggleLike(id, e) {
+      e.stopPropagation();
+      const idx = likedIds.indexOf(id);
+      if (idx > -1) {
+        likedIds.splice(idx, 1);
+      } else {
+        likedIds.push(id);
+      }
+      localStorage.setItem("haejack_liked_news", JSON.stringify(likedIds));
+      renderCards();
+    }
+
+    function toggleWhy(id, e) {
+      e.stopPropagation();
+      const box = document.getElementById("why-" + id);
+      if (box) {
+        box.classList.toggle("show");
+      }
+    }
+
+    function markAsRead(id) {
+      if (!readIds.includes(id)) {
+        readIds.push(id);
+        localStorage.setItem("haejack_read_news", JSON.stringify(readIds));
+      }
+    }
+
+    function openModal(id) {
+      const editionData = activeData[currentEdition];
+      const article = editionData.articles.find(a => a.id === id);
+      if (!article) return;
+
+      markAsRead(id);
+      renderCards();
+
+      const modal = document.getElementById("article-modal");
+      document.getElementById("modal-title").innerText = article.title;
+      
+      const content = `
+        <div class="modal-section">
+          <h4>💡 핵심 3줄 요약</h4>
+          <p>${article.summary}</p>
+        </div>
+        <div class="modal-section">
+          <h4>🎯 왜 나에게 중요한가</h4>
+          <p>${article.whyMatters}</p>
+        </div>
+        <div class="modal-section fact-check-box">
+          <h4>🔍 확인된 배경 및 영향</h4>
+          <p><strong>배경:</strong> ${article.background}</p>
+          <p style="margin-top:8px;"><strong>향후 파급 영향:</strong> ${article.impact}</p>
+        </div>
+        <div class="modal-section">
+          <h4>🔗 출처 및 원문 링크</h4>
+          <div class="source-links">
+            <a href="${article.originalUrl}" target="_blank" class="source-link-btn">
+              ${article.source} 원문 보러가기 ↗ (${article.time})
+            </a>
+          </div>
+        </div>
+      `;
+      document.getElementById("modal-content").innerHTML = content;
+      modal.classList.add("show");
+    }
+
+    function closeModal(e) {
+      document.getElementById("article-modal").classList.remove("show");
+    }
+
+    function closeModalDirect() {
+      document.getElementById("article-modal").classList.remove("show");
+    }
+
+    function openNewsFactoryModal() {
+      const modal = document.getElementById("article-modal");
+      document.getElementById("modal-title").innerText = "뉴스공장 당일 종합 브리핑";
+      const content = `
+        <div class="modal-section">
+          <h4>🎙️ 오늘의 뉴스공장 핵심 쟁점</h4>
+          <p>김어준의 겸손은 힘들다 뉴스공장 방송의 핵심 논점과 출연자별 주장을 사실 관계와 분리하여 브리핑합니다.</p>
+        </div>
+        <div class="modal-section">
+          <h4>📋 주요 코너별 분석</h4>
+          <p>• <strong>정치·사회:</strong> 당일 주요 쟁점 사안에 대한 패널별 견해 및 후속 일정<br>
+          • <strong>경제·산업:</strong> 환율 및 서민 물가 흐름, 원자재 시장 영향 분석<br>
+          • <strong>해외 시각:</strong> 외신에서 바라본 동일 사안에 대한 객관적 보도 내용 대조</p>
+        </div>
+        <div class="modal-section">
+          <h4>⚖️ 팩트 및 주장 구분</h4>
+          <p>방송 중 발언된 주관적 견해는 별도 표시되며, 언론사 취재 및 통계로 확인된 사실 위주로 재구성되었습니다.</p>
+        </div>
+      `;
+      document.getElementById("modal-content").innerHTML = content;
+      modal.classList.add("show");
+    }
+
+    function renderCards(regionFilter) {
+      const container = document.getElementById("news-cards-container");
+      container.innerHTML = "";
+
+      const editionData = activeData[currentEdition];
+      let list = [...editionData.articles];
+
+      // Filter by category
+      if (currentCategory === "saved") {
+        list = list.filter(a => savedIds.includes(a.id));
+      } else if (currentCategory !== "all") {
+        list = list.filter(a => a.category.includes(currentCategory) || a.badge.includes(currentCategory));
+      }
+
+      // Region Filter
+      if (regionFilter && regionFilter !== "전국") {
+        list = list.filter(a => (a.summary + a.title + a.badge).includes(regionFilter));
+      }
+
+      // Filter by tabs
+      if (activeFeedTab === "unread") {
+        list = list.filter(a => !readIds.includes(a.id));
+      } else if (activeFeedTab === "recommend") {
+        // Prioritize liked or AI/Tech
+        list.sort((a, b) => (likedIds.includes(b.id) ? 1 : 0) - (likedIds.includes(a.id) ? 1 : 0));
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-dim);">
+            <div style="font-size: 36px; margin-bottom: 12px;">📭</div>
+            <p style="font-size: 15px;">해당 조건에 일치하는 뉴스가 없습니다.</p>
+          </div>
+        `;
+        return;
+      }
+
+      list.forEach(article => {
+        const isSaved = savedIds.includes(article.id);
+        const isLiked = likedIds.includes(article.id);
+        const isRead = readIds.includes(article.id);
+
+        const card = document.createElement("div");
+        card.className = "news-card";
+        card.onclick = () => openModal(article.id);
+
+        card.innerHTML = `
+          <div class="card-thumb-wrap">
+            <img src="${article.thumb}" alt="썸네일">
+            <span class="card-badge">${article.badge || '브리핑'}</span>
+          </div>
+          <div class="card-body">
+            <div class="card-category">${article.category} ${isRead ? '<span style="color:var(--text-dim);font-weight:400;">(읽음)</span>' : ''}</div>
+            <h3 class="card-title">${article.title}</h3>
+            <p class="card-summary">${article.summary}</p>
+            <div class="card-meta">
+              <span>${article.source}</span>
+              <span>•</span>
+              <span>${article.time}</span>
+            </div>
+            
+            <!-- STEP 2: WHY IT MATTERS -->
+            <div class="why-matters-box" id="why-${article.id}">
+              <strong>💡 왜 중요한가</strong>
+              ${article.whyMatters}
+            </div>
+
+            <div class="card-actions">
+              <button class="action-btn ${isLiked ? 'active' : ''}" onclick="toggleLike('${article.id}', event)">
+                ${isLiked ? '⭐ 관심 있음' : '☆ 관심 있어요'}
+              </button>
+              <button class="action-btn ${isSaved ? 'active' : ''}" onclick="toggleSave('${article.id}', event)" title="보관">
+                ${isSaved ? '🔖 보관됨' : '📑 보관'}
+              </button>
+              <button class="action-btn why-btn" onclick="toggleWhy('${article.id}', event)">
+                📊 왜 중요한가 ▾
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderRightSidebar() {
+      const editionData = activeData[currentEdition];
+      
+      // Newsfactory
+      const nfContainer = document.getElementById("nf-items-container");
+      nfContainer.innerHTML = "";
+      editionData.newsfactory.items.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "nf-item";
+        div.onclick = openNewsFactoryModal;
+        div.innerHTML = `
+          <div class="nf-item-icon">📋</div>
+          <div class="nf-item-content">
+            <h4>${item.title}</h4>
+            <p>${item.desc}</p>
+          </div>
+        `;
+        nfContainer.appendChild(div);
+      });
+
+      // SOOP
+      const soopContainer = document.getElementById("soop-items-container");
+      soopContainer.innerHTML = "";
+      editionData.soop.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "streamer-item";
+        div.innerHTML = `
+          <div class="streamer-avatar">${item.name[0]}</div>
+          <div class="streamer-info">
+            <h5>${item.name}</h5>
+            <p>${item.desc}</p>
+          </div>
+          <span style="font-size:11px;color:var(--text-dim);">${item.tag}</span>
+        `;
+        soopContainer.appendChild(div);
+      });
+    }
+
+    function switchNfTab(tab, el) {
+      document.querySelectorAll(".nf-tab").forEach(t => t.classList.remove("active"));
+      el.classList.add("active");
+    }
+
+    function handleSearch() {
+      const query = document.getElementById("search-input").value.toLowerCase();
+      const cards = document.querySelectorAll(".news-card");
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? "flex" : "none";
+      });
+    }
+
+    function loadLatestArticles() {
+      switchEdition(currentEdition);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderAll() {
+      switchEdition(currentEdition);
+    }
+
+    // Auto load on start
+    window.addEventListener("DOMContentLoaded", loadDataFromRepo);
+  </script>
+</body>
+</html>
