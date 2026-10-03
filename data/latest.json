@@ -21,7 +21,27 @@
         "claims": [
           "구글 측은 사무직 실무자의 단순 데이터 입력 시간을 70% 이상 단축할 것이라 주장"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=제미나이+AI+신기능"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=제미나이+AI+신기능",
+        "relatedArticles": [
+          {
+            "source": "전자신문",
+            "time": "10월 3일 05:20",
+            "title": "구글, 멀티모달 추론 강화 차세대 AI 모델 공개",
+            "url": "https://search.naver.com/search.naver?where=news&query=제미나이+차세대+모델"
+          },
+          {
+            "source": "연합뉴스",
+            "time": "10월 3일 04:50",
+            "title": "빅테크 오피스 문서 정산 자동화 경쟁 본격화",
+            "url": "https://search.naver.com/search.naver?where=news&query=AI+문서+정산+자동화"
+          },
+          {
+            "source": "IT조선",
+            "time": "10월 3일 03:30",
+            "title": "영수증 서식 자동 인식해 엑셀 표로 변환 지원",
+            "url": "https://search.naver.com/search.naver?where=news&query=AI+영수증+표+변환"
+          }
+        ]
       },
       {
         "id": "ai_2",
@@ -41,7 +61,21 @@
         "claims": [
           "개발진은 보안이 중요한 개인 사업자와 중소기업에 최적화된 로컬 비서가 될 것으로 전망"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=오픈소스+LLM+로컬+PC"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=오픈소스+LLM+로컬+PC",
+        "relatedArticles": [
+          {
+            "source": "AI타임스",
+            "time": "10월 3일 04:40",
+            "title": "개인용 데스크톱에 최적화된 양자화 LLM 공개",
+            "url": "https://search.naver.com/search.naver?where=news&query=오픈소스+로컬+LLM"
+          },
+          {
+            "source": "디지털데일리",
+            "time": "10월 3일 03:10",
+            "title": "클라우드 비용 부담 던 오픈소스 모델의 진화",
+            "url": "https://search.naver.com/search.naver?where=news&query=오픈소스+AI+모델"
+          }
+        ]
       },
       {
         "id": "ai_3",
@@ -61,7 +95,8 @@
         "claims": [
           "1인 사업장 및 프리랜서의 소프트웨어 월 고정비 부담을 완전히 제거할 수 있다는 평가"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=깃허브+액션+업무+자동화"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=깃허브+액션+업무+자동화",
+        "relatedArticles": []
       },
       {
         "id": "ai_4",
@@ -81,7 +116,8 @@
         "claims": [
           "유튜브 크리에이터 및 정보 수집가의 콘텐츠 모니터링 시간을 80% 줄여준다고 분석"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=AI+영상+편집+자막+자동화"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=AI+영상+편집+자막+자동화",
+        "relatedArticles": []
       },
       {
         "id": "reg_1",
@@ -101,7 +137,27 @@
         "claims": [
           "무안군은 향후 3,000명 이상의 직간접 고용 창출과 연간 수천억 원의 생산 유발 효과를 기대"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=무안+항공+특화산단"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=무안+항공+특화산단",
+        "relatedArticles": [
+          {
+            "source": "무등일보",
+            "time": "10월 3일 05:00",
+            "title": "무안공항 배후 항공정비 산단 인프라 확충 박차",
+            "url": "https://search.naver.com/search.naver?where=news&query=무안공항+항공정비+산단"
+          },
+          {
+            "source": "광주일보",
+            "time": "10월 3일 04:15",
+            "title": "서남권 항공 물류 거점 단지 조성 사업 탄력",
+            "url": "https://search.naver.com/search.naver?where=news&query=서남권+항공+물류+단지"
+          },
+          {
+            "source": "목포KBS",
+            "time": "10월 3일 03:00",
+            "title": "무안 진입 도로 4차선 개설 공사 순항",
+            "url": "https://search.naver.com/search.naver?where=news&query=무안+도로+개설+공사"
+          }
+        ]
       },
       {
         "id": "reg_2",
@@ -120,7 +176,21 @@
         "claims": [
           "항만 관계자는 차량 대기 시간이 평균 30분 이상 단축될 것으로 예상"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=목포항+신항만+화물+야적장"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=목포항+신항만+화물+야적장",
+        "relatedArticles": [
+          {
+            "source": "남도일보",
+            "time": "10월 3일 04:20",
+            "title": "목포 신항 철재 및 중량 화물 부두 안전성 강화",
+            "url": "https://search.naver.com/search.naver?where=news&query=목포신항+화물+부두"
+          },
+          {
+            "source": "KBC광주방송",
+            "time": "10월 3일 03:40",
+            "title": "항만 화물 계량 디지털화로 운송 대기 시간 감축",
+            "url": "https://search.naver.com/search.naver?where=news&query=항만+화물+계량+디지털"
+          }
+        ]
       },
       {
         "id": "reg_3",
@@ -140,7 +210,8 @@
         "claims": [
           "개통 시 목포에서 서울 용산까지 1시간 50분대 주파 가능할 것으로 발표"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=호남고속철도+2단계+목포+무안"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=호남고속철도+2단계+목포+무안",
+        "relatedArticles": []
       },
       {
         "id": "reg_4",
@@ -160,7 +231,8 @@
         "claims": [
           "지자체는 2030년까지 연간 2만 대분의 폐배터리 순환 자원화 목표 제시"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=광주+전남+모빌리티+자원순환"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=광주+전남+모빌리티+자원순환",
+        "relatedArticles": []
       },
       {
         "id": "life_1",
@@ -180,7 +252,8 @@
         "claims": [
           "유통업계는 4분기 연말 프로모션 기간이 시스템 교체의 적기라고 주장"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=RTX+그래픽카드+시세"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=RTX+그래픽카드+시세",
+        "relatedArticles": []
       },
       {
         "id": "life_2",
@@ -200,7 +273,8 @@
         "claims": [
           "차량 제조사는 월 2,000km 주행 기준 유류비가 경유차의 35% 수준이라고 발표"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=전기+화물차+보조금+유지비"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=전기+화물차+보조금+유지비",
+        "relatedArticles": []
       },
       {
         "id": "sci_1",
@@ -220,7 +294,8 @@
         "claims": [
           "제조사는 3년 내 현장 인력 1인당 2대 배치 체제로 생산성을 배가시킬 것이라 발표"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=산업용+휴머노이드+로봇+선별"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=산업용+휴머노이드+로봇+선별",
+        "relatedArticles": []
       },
       {
         "id": "sci_2",
@@ -240,7 +315,8 @@
         "claims": [
           "연구진은 은하 진화 모델 교과서를 다시 써야 할 수준의 발견이라고 자평"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=제임스웹+우주망원경+은하"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=제임스웹+우주망원경+은하",
+        "relatedArticles": []
       },
       {
         "id": "pol_1",
@@ -260,7 +336,27 @@
         "claims": [
           "유통업계 관계자는 4분기 건설·제조 수요 회복 여부에 따라 추가 가격 상승 여지가 있다고 전망"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=철스크랩+고철+비철금속+시세"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=철스크랩+고철+비철금속+시세",
+        "relatedArticles": [
+          {
+            "source": "연합인포맥스",
+            "time": "10월 3일 05:10",
+            "title": "런던금속거래소 비철금속 가격 일제 반등세",
+            "url": "https://search.naver.com/search.naver?where=news&query=LME+비철금속+가격"
+          },
+          {
+            "source": "이데일리",
+            "time": "10월 3일 04:30",
+            "title": "국내 전기로 제강사 철스크랩 구매 단가 인상 고시",
+            "url": "https://search.naver.com/search.naver?where=news&query=제강사+철스크랩+단가"
+          },
+          {
+            "source": "머니투데이",
+            "time": "10월 3일 03:15",
+            "title": "원자재 공급망 불안에 따른 철강 유통가 변동",
+            "url": "https://search.naver.com/search.naver?where=news&query=철강+원자재+유통가"
+          }
+        ]
       },
       {
         "id": "pol_2",
@@ -279,7 +375,21 @@
         "claims": [
           "세무법인 측은 장부 전산화만으로도 불필요한 세무 소명 절차의 90%를 줄일 수 있다고 조언"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=재활용폐자원+의제매입세액+공제"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=재활용폐자원+의제매입세액+공제",
+        "relatedArticles": [
+          {
+            "source": "택스넷",
+            "time": "10월 3일 03:00",
+            "title": "하반기 부가세 신고 시 의제매입세액 공제 서류 점검",
+            "url": "https://search.naver.com/search.naver?where=news&query=의제매입세액공제+부가세"
+          },
+          {
+            "source": "국세일보",
+            "time": "10월 3일 02:10",
+            "title": "폐자원 수집 사업자 계량표 및 증빙 전산 보관 필수",
+            "url": "https://search.naver.com/search.naver?where=news&query=폐자원+계량표+증빙"
+          }
+        ]
       },
       {
         "id": "nf_art_1",
@@ -299,7 +409,8 @@
         "claims": [
           "패널들은 이번 국감이 향후 정국 주도권의 분수령이 될 것이라 주장"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=겸손은힘들다+뉴스공장"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=겸손은힘들다+뉴스공장",
+        "relatedArticles": []
       },
       {
         "id": "nf_art_2",
@@ -319,7 +430,8 @@
         "claims": [
           "월가 분석가들은 연말 환율 안정이 수입 물가 안정의 열쇠가 될 것으로 전망"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=블룸버그+한국+경제+외신"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=블룸버그+한국+경제+외신",
+        "relatedArticles": []
       }
     ],
     "newsfactory": {
@@ -381,7 +493,27 @@
         "claims": [
           "무안군은 향후 3,000명 이상의 직간접 고용 창출과 연간 수천억 원의 생산 유발 효과를 기대"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=무안+항공+특화산단"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=무안+항공+특화산단",
+        "relatedArticles": [
+          {
+            "source": "무등일보",
+            "time": "10월 3일 05:00",
+            "title": "무안공항 배후 항공정비 산단 인프라 확충 박차",
+            "url": "https://search.naver.com/search.naver?where=news&query=무안공항+항공정비+산단"
+          },
+          {
+            "source": "광주일보",
+            "time": "10월 3일 04:15",
+            "title": "서남권 항공 물류 거점 단지 조성 사업 탄력",
+            "url": "https://search.naver.com/search.naver?where=news&query=서남권+항공+물류+단지"
+          },
+          {
+            "source": "목포KBS",
+            "time": "10월 3일 03:00",
+            "title": "무안 진입 도로 4차선 개설 공사 순항",
+            "url": "https://search.naver.com/search.naver?where=news&query=무안+도로+개설+공사"
+          }
+        ]
       },
       {
         "id": "reg_2",
@@ -400,7 +532,21 @@
         "claims": [
           "항만 관계자는 차량 대기 시간이 평균 30분 이상 단축될 것으로 예상"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=목포항+신항만+화물+야적장"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=목포항+신항만+화물+야적장",
+        "relatedArticles": [
+          {
+            "source": "남도일보",
+            "time": "10월 3일 04:20",
+            "title": "목포 신항 철재 및 중량 화물 부두 안전성 강화",
+            "url": "https://search.naver.com/search.naver?where=news&query=목포신항+화물+부두"
+          },
+          {
+            "source": "KBC광주방송",
+            "time": "10월 3일 03:40",
+            "title": "항만 화물 계량 디지털화로 운송 대기 시간 감축",
+            "url": "https://search.naver.com/search.naver?where=news&query=항만+화물+계량+디지털"
+          }
+        ]
       },
       {
         "id": "reg_3",
@@ -420,7 +566,8 @@
         "claims": [
           "개통 시 목포에서 서울 용산까지 1시간 50분대 주파 가능할 것으로 발표"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=호남고속철도+2단계+목포+무안"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=호남고속철도+2단계+목포+무안",
+        "relatedArticles": []
       },
       {
         "id": "reg_4",
@@ -440,7 +587,8 @@
         "claims": [
           "지자체는 2030년까지 연간 2만 대분의 폐배터리 순환 자원화 목표 제시"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=광주+전남+모빌리티+자원순환"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=광주+전남+모빌리티+자원순환",
+        "relatedArticles": []
       },
       {
         "id": "life_1",
@@ -460,7 +608,8 @@
         "claims": [
           "유통업계는 4분기 연말 프로모션 기간이 시스템 교체의 적기라고 주장"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=RTX+그래픽카드+시세"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=RTX+그래픽카드+시세",
+        "relatedArticles": []
       },
       {
         "id": "life_2",
@@ -480,7 +629,8 @@
         "claims": [
           "차량 제조사는 월 2,000km 주행 기준 유류비가 경유차의 35% 수준이라고 발표"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=전기+화물차+보조금+유지비"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=전기+화물차+보조금+유지비",
+        "relatedArticles": []
       },
       {
         "id": "sci_1",
@@ -500,7 +650,8 @@
         "claims": [
           "제조사는 3년 내 현장 인력 1인당 2대 배치 체제로 생산성을 배가시킬 것이라 발표"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=산업용+휴머노이드+로봇+선별"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=산업용+휴머노이드+로봇+선별",
+        "relatedArticles": []
       },
       {
         "id": "sci_2",
@@ -520,7 +671,8 @@
         "claims": [
           "연구진은 은하 진화 모델 교과서를 다시 써야 할 수준의 발견이라고 자평"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=제임스웹+우주망원경+은하"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=제임스웹+우주망원경+은하",
+        "relatedArticles": []
       },
       {
         "id": "pol_1",
@@ -540,7 +692,27 @@
         "claims": [
           "유통업계 관계자는 4분기 건설·제조 수요 회복 여부에 따라 추가 가격 상승 여지가 있다고 전망"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=철스크랩+고철+비철금속+시세"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=철스크랩+고철+비철금속+시세",
+        "relatedArticles": [
+          {
+            "source": "연합인포맥스",
+            "time": "10월 3일 05:10",
+            "title": "런던금속거래소 비철금속 가격 일제 반등세",
+            "url": "https://search.naver.com/search.naver?where=news&query=LME+비철금속+가격"
+          },
+          {
+            "source": "이데일리",
+            "time": "10월 3일 04:30",
+            "title": "국내 전기로 제강사 철스크랩 구매 단가 인상 고시",
+            "url": "https://search.naver.com/search.naver?where=news&query=제강사+철스크랩+단가"
+          },
+          {
+            "source": "머니투데이",
+            "time": "10월 3일 03:15",
+            "title": "원자재 공급망 불안에 따른 철강 유통가 변동",
+            "url": "https://search.naver.com/search.naver?where=news&query=철강+원자재+유통가"
+          }
+        ]
       },
       {
         "id": "pol_2",
@@ -559,7 +731,21 @@
         "claims": [
           "세무법인 측은 장부 전산화만으로도 불필요한 세무 소명 절차의 90%를 줄일 수 있다고 조언"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=재활용폐자원+의제매입세액+공제"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=재활용폐자원+의제매입세액+공제",
+        "relatedArticles": [
+          {
+            "source": "택스넷",
+            "time": "10월 3일 03:00",
+            "title": "하반기 부가세 신고 시 의제매입세액 공제 서류 점검",
+            "url": "https://search.naver.com/search.naver?where=news&query=의제매입세액공제+부가세"
+          },
+          {
+            "source": "국세일보",
+            "time": "10월 3일 02:10",
+            "title": "폐자원 수집 사업자 계량표 및 증빙 전산 보관 필수",
+            "url": "https://search.naver.com/search.naver?where=news&query=폐자원+계량표+증빙"
+          }
+        ]
       },
       {
         "id": "nf_art_1",
@@ -579,7 +765,8 @@
         "claims": [
           "패널들은 이번 국감이 향후 정국 주도권의 분수령이 될 것이라 주장"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=겸손은힘들다+뉴스공장"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=겸손은힘들다+뉴스공장",
+        "relatedArticles": []
       },
       {
         "id": "nf_art_2",
@@ -599,7 +786,8 @@
         "claims": [
           "월가 분석가들은 연말 환율 안정이 수입 물가 안정의 열쇠가 될 것으로 전망"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=블룸버그+한국+경제+외신"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=블룸버그+한국+경제+외신",
+        "relatedArticles": []
       },
       {
         "id": "ai_1",
@@ -619,7 +807,27 @@
         "claims": [
           "구글 측은 사무직 실무자의 단순 데이터 입력 시간을 70% 이상 단축할 것이라 주장"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=제미나이+AI+신기능"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=제미나이+AI+신기능",
+        "relatedArticles": [
+          {
+            "source": "전자신문",
+            "time": "10월 3일 05:20",
+            "title": "구글, 멀티모달 추론 강화 차세대 AI 모델 공개",
+            "url": "https://search.naver.com/search.naver?where=news&query=제미나이+차세대+모델"
+          },
+          {
+            "source": "연합뉴스",
+            "time": "10월 3일 04:50",
+            "title": "빅테크 오피스 문서 정산 자동화 경쟁 본격화",
+            "url": "https://search.naver.com/search.naver?where=news&query=AI+문서+정산+자동화"
+          },
+          {
+            "source": "IT조선",
+            "time": "10월 3일 03:30",
+            "title": "영수증 서식 자동 인식해 엑셀 표로 변환 지원",
+            "url": "https://search.naver.com/search.naver?where=news&query=AI+영수증+표+변환"
+          }
+        ]
       },
       {
         "id": "ai_2",
@@ -639,7 +847,21 @@
         "claims": [
           "개발진은 보안이 중요한 개인 사업자와 중소기업에 최적화된 로컬 비서가 될 것으로 전망"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=오픈소스+LLM+로컬+PC"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=오픈소스+LLM+로컬+PC",
+        "relatedArticles": [
+          {
+            "source": "AI타임스",
+            "time": "10월 3일 04:40",
+            "title": "개인용 데스크톱에 최적화된 양자화 LLM 공개",
+            "url": "https://search.naver.com/search.naver?where=news&query=오픈소스+로컬+LLM"
+          },
+          {
+            "source": "디지털데일리",
+            "time": "10월 3일 03:10",
+            "title": "클라우드 비용 부담 던 오픈소스 모델의 진화",
+            "url": "https://search.naver.com/search.naver?where=news&query=오픈소스+AI+모델"
+          }
+        ]
       },
       {
         "id": "ai_3",
@@ -659,7 +881,8 @@
         "claims": [
           "1인 사업장 및 프리랜서의 소프트웨어 월 고정비 부담을 완전히 제거할 수 있다는 평가"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=깃허브+액션+업무+자동화"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=깃허브+액션+업무+자동화",
+        "relatedArticles": []
       },
       {
         "id": "ai_4",
@@ -679,7 +902,8 @@
         "claims": [
           "유튜브 크리에이터 및 정보 수집가의 콘텐츠 모니터링 시간을 80% 줄여준다고 분석"
         ],
-        "originalUrl": "https://search.naver.com/search.naver?where=news&query=AI+영상+편집+자막+자동화"
+        "originalUrl": "https://search.naver.com/search.naver?where=news&query=AI+영상+편집+자막+자동화",
+        "relatedArticles": []
       }
     ],
     "newsfactory": {

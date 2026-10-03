@@ -10,7 +10,6 @@ from datetime import datetime, timezone, timedelta
 KST = timezone(timedelta(hours=9))
 NOW_KST = datetime.now(KST)
 
-# Get Gemini API Key from environment or argument
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 if not GEMINI_API_KEY and len(sys.argv) > 1:
     GEMINI_API_KEY = sys.argv[1]
@@ -25,7 +24,7 @@ FEEDS = {
     "뉴스공장": "https://news.google.com/rss/search?q=겸손은힘들다+뉴스공장&hl=ko&gl=KR&ceid=KR:ko"
 }
 
-def fetch_rss_items(url, max_items=6):
+def fetch_rss_items(url, max_items=8):
     items = []
     try:
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -37,10 +36,11 @@ def fetch_rss_items(url, max_items=6):
                 link = item.find('link').text if item.find('link') is not None else ""
                 pubDate = item.find('pubDate').text if item.find('pubDate') is not None else ""
                 source_el = item.find('source')
-                source = source_el.text if source_el is not None else "Google News"
+                source = source_el.text if source_el is not None else "언론사"
+                clean_title = title.split(" - ")[0] if " - " in title else title
                 items.append({
-                    "title": title,
-                    "link": link,
+                    "title": clean_title,
+                    "link": f"https://search.naver.com/search.naver?where=news&query={urllib.parse.quote(clean_title[:30])}",
                     "pubDate": pubDate,
                     "source": source
                 })
@@ -67,7 +67,7 @@ def call_gemini(prompt):
     data = json.dumps(payload).encode('utf-8')
     req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'})
     try:
-        with urllib.request.urlopen(req, timeout=45) as resp:
+        with urllib.request.urlopen(req, timeout=50) as resp:
             res_json = json.loads(resp.read().decode('utf-8'))
             text = res_json['candidates'][0]['content']['parts'][0]['text']
             return json.loads(text)
@@ -87,7 +87,7 @@ def main():
 
     collected_data = {}
     for cat, url in FEEDS.items():
-        collected_data[cat] = fetch_rss_items(url, max_items=6)
+        collected_data[cat] = fetch_rss_items(url, max_items=8)
 
     prompt = f"""
 당신은 '해적왕 뉴스룸'의 전담 AI 수석 에디터입니다.
@@ -96,63 +96,33 @@ def main():
 현재 일자: {date_str}
 현재 브리핑 판: {edition_name}
 
-다음 수집된 원문 뉴스 헤드라인 목록을 바탕으로, 엄선된 8~10개의 뉴스 브리핑과 뉴스공장 요약을 JSON 형식으로 작성하세요.
-
 수집된 뉴스 데이터:
 {json.dumps(collected_data, ensure_ascii=False, indent=2)}
 
-[요구사항]
-1. articles (총 8~10개 기사):
-   - AI·테크 (3개 이상), 과학·미래, 생활·취미, 전국·지역(무안·목포·전남 필수 포함), 정치·사회로 균형 구성
-   - 각 기사는 3단계 읽기 구조를 철저히 지킵니다:
-     - title: 흥미를 끄는 정확한 제목
-     - summary: 2~3줄의 핵심 요약
-     - whyMatters: 왜 중요한지, 나에게 어떤 영향과 실무적 의미가 있는지
-     - background: 구체적 배경과 사실 관계 (추측 금지)
-     - impact: 향후 예상되는 파급 영향
-     - category: 'AI·테크', '과학·미래', '생활·취미', '전국·지역', '정치·사회', '뉴스공장' 중 하나
-     - badge: 세부 키워드 (예: '생성형 AI', '무안·전남', '하드웨어' 등)
-     - source: 원문 언론사명
-     - time: 발행 시각 (예: '10월 3일 05:40')
-     - originalUrl: 원문 링크 (수집된 link 사용)
-     - thumb: 기사 주제에 어울리는 고화질 Unsplash 이미지 URL
+[핵심 규칙: 토픽 클러스터링(동일 사건 묶음)]
+1. 기사를 기계적으로 갯수만 채우지 마세요.
+2. 수집된 뉴스 중 **동일하거나 유사한 사건·이슈를 다룬 기사들은 반드시 하나의 대표 이슈 카드로 묶으세요.**
+3. 묶인 다른 언론사의 관련 기사들은 `relatedArticles` 배열에 [언론사명, 발행시각, 기사제목, 링크]로 포함하세요.
+4. 독립적인 사건 단위로 카드를 생성하되, 시간 범위 내에 실제로 발생한 의미 있는 이슈들만 선별하세요 (최소 10건 ~ 최대 18건).
+5. 전국·지역 분야는 무안, 목포, 전남, 광주 지역 기사를 최우선 배치하세요.
 
-2. newsfactory:
-   - items 3개: '오늘의 핵심 쟁점', '주요 코너 자세히', '관련 해외 보도'
-   - 주장과 확인된 사실을 분리하여 객관적 시각 제공
+[각 기사(article) 작성 포맷]
+- id: 유니크 ID (예: 'art_1')
+- category: 'AI·테크', '과학·미래', '생활·취미', '전국·지역', '정치·사회', '뉴스공장' 중 하나
+- badge: 세부 키워드 (예: '무안 산단', '제미나이 2.5', '고철 시세' 등)
+- title: 핵심을 찌르는 직관적인 제목
+- summary: 사건의 핵심 사실 요약 2~3줄
+- whyMatters: 실무/일상 관점에서 왜 중요한지, 어떤 영향과 의미가 있는지
+- details: 사건의 구체적 경위, 발표 내용, 핵심 수치
+- facts: 확인된 사실 리스트 (1~2개)
+- claims: 관계자 주장 및 전망 리스트 (1~2개)
+- source: 대표 언론사명
+- time: 보도 시각 (예: '10월 3일 05:40')
+- originalUrl: 대표 기사 실제 검색/원문 URL
+- thumb: 주제에 어울리는 고품질 Unsplash 이미지 URL
+- relatedArticles: 같은 사건을 다룬 다른 언론사 기사 묶음 배열 (title, source, time, url)
 
-3. soop:
-   - items 2~3개: 스트리머 방송 및 대회/협업 관련 요약
-
-반드시 다음 JSON 구조로만 반환하세요:
-{{
-  "date": "{date_str}",
-  "edition": "{edition_name}",
-  "articles": [
-    {{
-      "id": "item1",
-      "category": "AI·테크",
-      "badge": "제미나이 2.5",
-      "title": "...",
-      "summary": "...",
-      "source": "...",
-      "time": "...",
-      "thumb": "https://images.unsplash.com/...",
-      "whyMatters": "...",
-      "background": "...",
-      "impact": "...",
-      "originalUrl": "..."
-    }}
-  ],
-  "newsfactory": {{
-    "items": [
-      {{ "title": "오늘의 핵심 쟁점", "desc": "...", "type": "core" }}
-    ]
-  }},
-  "soop": [
-    {{ "name": "...", "desc": "...", "tag": "..." }}
-  ]
-}}
+반드시 위 형식의 JSON 구조로 반환하세요.
 """
 
     gemini_result = call_gemini(prompt)
@@ -168,7 +138,7 @@ def main():
 
     if gemini_result and "articles" in gemini_result:
         existing_data[edition_key] = gemini_result
-        print(f"Successfully generated {edition_key} edition with {len(gemini_result.get('articles', []))} articles.")
+        print(f"Successfully generated {edition_key} edition with {len(gemini_result.get('articles', []))} clustered issues.")
     else:
         print("Gemini result failed or empty, preserving existing data.", file=sys.stderr)
 

@@ -1354,7 +1354,28 @@
           <p>${article.details || article.background || article.summary}</p>
         </div>
 
+        
+        ${article.relatedArticles && article.relatedArticles.length > 0 ? `
+        <div class="modal-section" style="background: #091330; border: 1px solid #233b7b;">
+          <h4>📰 동일 사건 관련 언론사별 보도 묶음 (총 ${article.relatedArticles.length + 1}건)</h4>
+          <p style="font-size:12.5px; color:var(--text-dim); margin-bottom:10px;">같은 이슈를 보도한 다른 언론사의 시각과 원문 기사를 함께 확인할 수 있습니다.</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:#0e1c45; border-radius:8px;">
+              <span style="font-size:13px; color:#fff;"><strong>[대표] ${article.source}</strong> · ${article.title}</span>
+              <a href="${article.originalUrl}" target="_blank" style="color:#6ea0ff; font-size:12px; text-decoration:none; font-weight:700;">원문 ↗</a>
+            </div>
+            ${article.relatedArticles.map(rel => `
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:#0c183b; border-radius:8px; border:1px solid #182859;">
+                <span style="font-size:13px; color:#b5c7ef;"><strong>[${rel.source}]</strong> ${rel.title} <span style="font-size:11.5px; color:var(--text-dim);">(${rel.time})</span></span>
+                <a href="${rel.url}" target="_blank" style="color:#6ea0ff; font-size:12px; text-decoration:none; font-weight:700;">원문 ↗</a>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        ` : ''}
+
         <div class="fact-claim-grid">
+
           <div class="fact-box">
             <h5>🟢 확인된 사실 (Fact)</h5>
             <ul>${factsHtml || '<li>보도 자료 및 공표 지표 확인</li>'}</ul>
@@ -1398,7 +1419,28 @@
           • <strong>경제·산업:</strong> 국제 비철금속 시장 변동과 국내 원자재 정산 대장 실무 파급 효과<br>
           • <strong>외신 교차 검증:</strong> 로이터와 블룸버그 통신이 바라본 동아시아 경제 지정학 리스크 대조</p>
         </div>
+        
+        ${article.relatedArticles && article.relatedArticles.length > 0 ? `
+        <div class="modal-section" style="background: #091330; border: 1px solid #233b7b;">
+          <h4>📰 동일 사건 관련 언론사별 보도 묶음 (총 ${article.relatedArticles.length + 1}건)</h4>
+          <p style="font-size:12.5px; color:var(--text-dim); margin-bottom:10px;">같은 이슈를 보도한 다른 언론사의 시각과 원문 기사를 함께 확인할 수 있습니다.</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:#0e1c45; border-radius:8px;">
+              <span style="font-size:13px; color:#fff;"><strong>[대표] ${article.source}</strong> · ${article.title}</span>
+              <a href="${article.originalUrl}" target="_blank" style="color:#6ea0ff; font-size:12px; text-decoration:none; font-weight:700;">원문 ↗</a>
+            </div>
+            ${article.relatedArticles.map(rel => `
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:#0c183b; border-radius:8px; border:1px solid #182859;">
+                <span style="font-size:13px; color:#b5c7ef;"><strong>[${rel.source}]</strong> ${rel.title} <span style="font-size:11.5px; color:var(--text-dim);">(${rel.time})</span></span>
+                <a href="${rel.url}" target="_blank" style="color:#6ea0ff; font-size:12px; text-decoration:none; font-weight:700;">원문 ↗</a>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        ` : ''}
+
         <div class="fact-claim-grid">
+
           <div class="fact-box">
             <h5>🟢 확인된 사실 (Fact)</h5>
             <ul>
@@ -1486,7 +1528,14 @@
             <div class="card-category">${article.category} ${isRead ? '<span style="color:var(--text-dim);font-weight:400;">(읽음)</span>' : ''}</div>
             <h3 class="card-title">${article.title}</h3>
             <p class="card-summary">${article.summary}</p>
+            
             <div class="card-meta">
+              <span>${article.source}</span>
+              <span>•</span>
+              <span>${article.time}</span>
+              ${article.relatedArticles && article.relatedArticles.length > 0 ? `<span style="margin-left:auto; background:#1b2c60; color:#8ab4f8; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700;">📰 관련 보도 ${article.relatedArticles.length + 1}건</span>` : ''}
+            </div>
+
               <span>${article.source}</span>
               <span>•</span>
               <span>${article.time}</span>
