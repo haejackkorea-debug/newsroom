@@ -17,19 +17,19 @@ if not GEMINI_API_KEY and len(sys.argv) > 1:
 
 # RSS Feed sources
 FEEDS = {
-    "AI·테크": "https://news.google.com/rss/search?q=ChatGPT+OR+Gemini+OR+인공지능+OR+생성형AI&hl=ko&gl=KR&ceid=KR:ko",
-    "과학·미래": "https://news.google.com/rss/search?q=우주탐사+OR+로봇공학+OR+인공위성&hl=ko&gl=KR&ceid=KR:ko",
-    "생활·취미": "https://news.google.com/rss/search?q=그래픽카드+OR+PC하드웨어+OR+전기차&hl=ko&gl=KR&ceid=KR:ko",
+    "AI·테크": "https://news.google.com/rss/search?q=ChatGPT+OR+Gemini+OR+인공지능+OR+생성형AI+OR+LLM&hl=ko&gl=KR&ceid=KR:ko",
+    "과학·미래": "https://news.google.com/rss/search?q=우주탐사+OR+로봇공학+OR+인공위성+OR+휴머노이드&hl=ko&gl=KR&ceid=KR:ko",
+    "생활·취미": "https://news.google.com/rss/search?q=그래픽카드+OR+PC하드웨어+OR+전기차+OR+게임신작&hl=ko&gl=KR&ceid=KR:ko",
     "전국·지역": "https://news.google.com/rss/search?q=무안+OR+목포+OR+전남+OR+광주&hl=ko&gl=KR&ceid=KR:ko",
     "정치·사회": "https://news.google.com/rss/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFZ4ZERBU0FtdHZLQUFQAQ?hl=ko&gl=KR&ceid=KR:ko",
     "뉴스공장": "https://news.google.com/rss/search?q=겸손은힘들다+뉴스공장&hl=ko&gl=KR&ceid=KR:ko"
 }
 
-def fetch_rss_items(url, max_items=4):
+def fetch_rss_items(url, max_items=6):
     items = []
     try:
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        with urllib.request.urlopen(req, timeout=12) as resp:
             content = resp.read()
             root = ET.fromstring(content)
             for item in root.findall('./channel/item')[:max_items]:
@@ -67,7 +67,7 @@ def call_gemini(prompt):
     data = json.dumps(payload).encode('utf-8')
     req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'})
     try:
-        with urllib.request.urlopen(req, timeout=40) as resp:
+        with urllib.request.urlopen(req, timeout=45) as resp:
             res_json = json.loads(resp.read().decode('utf-8'))
             text = res_json['candidates'][0]['content']['parts'][0]['text']
             return json.loads(text)
@@ -78,7 +78,6 @@ def call_gemini(prompt):
 def main():
     print(f"[{NOW_KST.strftime('%Y-%m-%d %H:%M:%S KST')}] Starting briefing generation...")
     
-    # Determine edition: 04:00~11:59 -> morning, 12:00~23:59 or 00:00~03:59 -> afternoon
     hour = NOW_KST.hour
     is_morning = 4 <= hour < 12
     edition_key = "morning" if is_morning else "afternoon"
@@ -88,7 +87,7 @@ def main():
 
     collected_data = {}
     for cat, url in FEEDS.items():
-        collected_data[cat] = fetch_rss_items(url, max_items=5)
+        collected_data[cat] = fetch_rss_items(url, max_items=6)
 
     prompt = f"""
 당신은 '해적왕 뉴스룸'의 전담 AI 수석 에디터입니다.
@@ -97,14 +96,14 @@ def main():
 현재 일자: {date_str}
 현재 브리핑 판: {edition_name}
 
-다음 수집된 원문 뉴스 헤드라인 목록을 바탕으로, 엄선된 6개의 뉴스 브리핑과 뉴스공장 요약을 JSON 형식으로 작성하세요.
+다음 수집된 원문 뉴스 헤드라인 목록을 바탕으로, 엄선된 8~10개의 뉴스 브리핑과 뉴스공장 요약을 JSON 형식으로 작성하세요.
 
 수집된 뉴스 데이터:
 {json.dumps(collected_data, ensure_ascii=False, indent=2)}
 
 [요구사항]
-1. articles (총 6개 기사):
-   - AI·테크 (최소 2개), 과학·미래, 생활·취미, 전국·지역(무안·목포·전남 우선), 정치·사회로 균형 구성
+1. articles (총 8~10개 기사):
+   - AI·테크 (3개 이상), 과학·미래, 생활·취미, 전국·지역(무안·목포·전남 필수 포함), 정치·사회로 균형 구성
    - 각 기사는 3단계 읽기 구조를 철저히 지킵니다:
      - title: 흥미를 끄는 정확한 제목
      - summary: 2~3줄의 핵심 요약
@@ -116,7 +115,7 @@ def main():
      - source: 원문 언론사명
      - time: 발행 시각 (예: '10월 3일 05:40')
      - originalUrl: 원문 링크 (수집된 link 사용)
-     - thumb: 관련성 높은 Unsplash 이미지 URL
+     - thumb: 기사 주제에 어울리는 고화질 Unsplash 이미지 URL
 
 2. newsfactory:
    - items 3개: '오늘의 핵심 쟁점', '주요 코너 자세히', '관련 해외 보도'
@@ -158,7 +157,6 @@ def main():
 
     gemini_result = call_gemini(prompt)
 
-    # Read existing latest.json if available
     latest_file = os.path.join(os.path.dirname(__file__), "data", "latest.json")
     existing_data = {}
     if os.path.exists(latest_file):
