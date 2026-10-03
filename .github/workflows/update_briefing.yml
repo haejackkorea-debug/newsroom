@@ -1,0 +1,38 @@
+name: Update Haejack Newsroom Briefing
+
+on:
+  schedule:
+    # 20:30 UTC is 05:30 KST (06:00 morning edition)
+    - cron: '30 20 * * *'
+    # 06:30 UTC is 15:30 KST (16:00 afternoon edition)
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Generate News Briefing with Gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python briefing_generator.py
+
+      - name: Commit and Push Updated Briefing
+        run: |
+          git config --global user.name "Haejack Bot"
+          git config --global user.email "haejack-bot@users.noreply.github.com"
+          git add data/latest.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update news briefing [skip ci]" && git push)
